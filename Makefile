@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/03/26 17:50:41 by tkeil            ###   ########.fr        #
+#    Updated: 2025/03/26 20:18:44 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,14 @@ else
 endif
 
 # ADD here folder names with (PARSING, CLEARING, UTILS, ...), that hold appropriate files for a clean project structure
-PARSING = parser.c
+PARSING = parser.c validations.c
 CLEARING = cleaners.c
 UTILS = utils.c
+MESSAGING = err_message.c
 
 # ADD the Files to SRCS and add a prefix for a clean structure
-SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING))
-BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING))
+SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) $(addprefix messaging/, $(MESSAGING))
+BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) $(addprefix messaging/, $(MESSAGING))
 
 SRCS_PATHS = $(addprefix $(SRCSDIR), $(SRCS))
 BONUS_PATHS = $(addprefix $(SRCSDIR), $(BONUS_SRCS))
