@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/03/26 20:18:44 by tkeil            ###   ########.fr        #
+#    Updated: 2025/03/27 14:02:37 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,14 @@ PARSING = parser.c validations.c
 CLEARING = cleaners.c
 UTILS = utils.c
 MESSAGING = err_message.c
+KEYBOARD = actions.c controllers.c wnd_resize.c
 
 # ADD the Files to SRCS and add a prefix for a clean structure
-SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) $(addprefix messaging/, $(MESSAGING))
-BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) $(addprefix messaging/, $(MESSAGING))
+SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
+				$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD))
+
+BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
+						$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD))
 
 SRCS_PATHS = $(addprefix $(SRCSDIR), $(SRCS))
 BONUS_PATHS = $(addprefix $(SRCSDIR), $(BONUS_SRCS))
