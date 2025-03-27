@@ -6,12 +6,12 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/27 14:01:02 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:40:20 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -23,21 +23,24 @@
 #include "libft.h"
 #include "mlx.h"
 
-#define ESC 53
-#define CTRL 256
+# define WIDTH 800
+# define HEIGHT 800
 
-#define W 13
-#define S 1
-#define A 0
-#define D 2
+# define ESC 53
+# define CTRL 256
 
-#define UP 126
-#define DOWN 125
-#define LEFT 123
-#define RIGHT 124
+# define W 13
+# define S 1
+# define A 0
+# define D 2
 
-#define P 35
-#define M 46
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+
+# define P 35
+# define M 46
 
 typedef struct s_mlx
 {
@@ -84,10 +87,16 @@ typedef struct s_data
     t_mouse mouse;
 } t_data;
 
-int	ft_destroy(t_data *data);
+int ft_destroy(t_data *data);
 void ft_err_message(char *s1, char *s2);
 bool ft_input_validation(char *s);
 void ft_cleardata(t_data *data);
+
+// heap initialization
+int ft_initialization(t_data *data);
+
+// parser
+int ft_parse_map(t_data *data, char **argv);
 
 // keyboard handling
 int ft_keydown(int key, void *param);
@@ -97,10 +106,10 @@ int ft_mouse_up(int button, int x, int y, void *param);
 int ft_mouse_down(int button, int x, int y, void *param);
 
 // actions
-void    ft_action_W(t_data *data);
-void    ft_action_A(t_data *data);
-void    ft_action_S(t_data *data);
-void    ft_action_D(t_data *data);
-int     ft_wnd_resize(t_data **data, int delta_x, int delta_y);
+void ft_action_W(t_data *data);
+void ft_action_A(t_data *data);
+void ft_action_S(t_data *data);
+void ft_action_D(t_data *data);
+int ft_wnd_resize(t_data **data, int delta_x, int delta_y);
 
 #endif

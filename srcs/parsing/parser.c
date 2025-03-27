@@ -6,8 +6,15 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/26 16:52:53 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:38:26 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int ft_parse_map(t_data *data, char **argv)
+{
+    (void)data;
+    (void)argv;
+    return (1);
+}
