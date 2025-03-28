@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:13:34 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/26 20:13:46 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/28 11:31:50 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,10 @@ void	ft_err_message(char *s1, char *s2)
 			write(STDERR_FILENO, s2++, 1);
 	}
 	write(STDERR_FILENO, "\n", 1);
+}
+
+void	ft_err_message_exit(char *s1, char *s2)
+{
+	ft_err_message(s1, s2);
 	exit(1);
 }

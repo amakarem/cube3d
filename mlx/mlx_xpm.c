@@ -204,7 +204,7 @@ void	*mlx_int_parse_xpm(mlx_ptr_t *xvar,void *info,int info_size,char *(*f)())
       */
       if (method)
 	colors_direct[mlx_int_get_col_name(line,cpp)] = rgb_col;
-      //	  rgb_col>=0?mlx_get_color_value(xvar, rgb_col):rgb_col;
+      	  // rgb_col>=0?mlx_get_color_value(xvar, rgb_col):rgb_col;
       else
 	{
 	  colors[i].name = mlx_int_get_col_name(line,cpp);
@@ -216,7 +216,7 @@ void	*mlx_int_parse_xpm(mlx_ptr_t *xvar,void *info,int info_size,char *(*f)())
 
   if (!(img = mlx_new_image(xvar,width,height)))
     RETURN;
-  //opp = img->bpp/8;
+  // opp = img->bpp/8;
   opp = 4;
 
 

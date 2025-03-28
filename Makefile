@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/03/27 14:44:25 by tkeil            ###   ########.fr        #
+#    Updated: 2025/03/28 16:59:53 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,13 @@ else
 endif
 
 # ADD here folder names with (PARSING, CLEARING, UTILS, ...), that hold appropriate files for a clean project structure
-PARSING = parser.c validations.c
+PARSING = parser.c validations.c checkers.c
 CLEARING = cleaners.c
-UTILS = utils.c
+UTILS = utils.c numbers.c
 MESSAGING = err_message.c
 KEYBOARD = actions.c controllers.c wnd_resize.c
 INITIALIZATION = heap_allocations.c
+
 
 # ADD the Files to SRCS and add a prefix for a clean structure
 SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
