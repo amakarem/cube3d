@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/27 14:00:18 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/28 17:30:23 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ int	ft_keyup(int key, void *param)
 	if (!data->mouse.ctrl_down && key == P)
 	{
 		if (!ft_wnd_resize(&data, 100, 100))
-			return (ft_cleardata(data), 0);
+			return (ft_cleardata(&data), 0);
 	}
 	else if (!data->mouse.ctrl_down && key == M)
 	{
 		if (!ft_wnd_resize(&data, -100, -100))
-			return (ft_cleardata(data), 0);
+			return (ft_cleardata(&data), 0);
 	}
 	return (0);
 }

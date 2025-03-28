@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/03/28 16:59:53 by tkeil            ###   ########.fr        #
+#    Updated: 2025/03/28 20:15:21 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,20 +36,23 @@ else
 endif
 
 # ADD here folder names with (PARSING, CLEARING, UTILS, ...), that hold appropriate files for a clean project structure
-PARSING = parser.c validations.c checkers.c
+VALIDATION =  validations.c checkers.c checkers2.c
 CLEARING = cleaners.c
-UTILS = utils.c numbers.c
+UTILS = utils_validating.c utils_staff.c numbers.c
 MESSAGING = err_message.c
 KEYBOARD = actions.c controllers.c wnd_resize.c
 INITIALIZATION = heap_allocations.c
+PARSING = parser.c
 
 
 # ADD the Files to SRCS and add a prefix for a clean structure
 SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
-				$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION))
+				$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION)) \
+				$(addprefix validation/, $(VALIDATION))
 
 BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
-						$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION))
+						$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION)) \
+						$(addprefix validation/, $(VALIDATION))
 
 SRCS_PATHS = $(addprefix $(SRCSDIR), $(SRCS))
 BONUS_PATHS = $(addprefix $(SRCSDIR), $(BONUS_SRCS))

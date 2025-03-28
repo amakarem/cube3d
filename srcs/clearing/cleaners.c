@@ -6,13 +6,13 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:53:14 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/27 13:30:27 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/28 17:29:17 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void    ft_cleardata(t_data *data)
+void    ft_cleardata(t_data **data)
 {
     
 }

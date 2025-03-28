@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 17:11:38 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/28 20:20:16 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-    int         **map;
+    char        **map;
     int         width;
     int         height;
 }               t_map;
@@ -100,16 +100,19 @@ typedef struct s_data
 int ft_destroy(t_data *data);
 
 //validation
+int ft_validate_cub_file(char *file);
 int ft_check_map(char **split);
 int ft_check_colors(char **split);
 int ft_check_textures(char **split);
-int ft_validate_cub_file(char *file);
+int ft_is_map_closed(char **map);
+int ft_valid_map_characters(char **map);
+int ft_is_present_player_and_unique(char **map);
 
 // initialization
-int ft_initialization(t_data *data);
+int ft_initialization(t_data **data);
 
 // parsing
-int ft_parse_map(t_data *data, char **argv);
+int ft_parse_map(t_data **data, char *file);
 
 // messaging
 void ft_err_message(char *s1, char *s2);
@@ -133,8 +136,13 @@ int ft_wnd_resize(t_data **data, int delta_x, int delta_y);
 size_t  ft_ptr_len(char **ptr);
 int	ft_hex_to_int(const char *str);
 void    ft_free_ptr(char ***ptr);
+int ft_valid_numbers(char *s);
+int ft_is_wall_blocked(char **map, int y, int x);
+int ft_closed_vertical(char **map, int y, int x);
+int ft_closed_horizontal(char **map, int y, int x);
+
 
 // clearing
-void ft_cleardata(t_data *data);
+void ft_cleardata(t_data **data);
 
 #endif

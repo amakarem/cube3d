@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 14:20:54 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/28 17:43:04 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_destroy(t_data *data)
 {
 	if (data)
-		ft_cleardata(data);
+		ft_cleardata(&data);
 	exit(0);
 }
 
@@ -39,17 +39,17 @@ int main(int argc, char **argv)
 		ft_err_message_exit("Wrong number of arguments!", NULL);
 	if (!ft_validate_cub_file(argv[1]))
 		ft_err_message_exit(".cub file validation failed!", NULL);
-	if (!ft_initialization(data))
+	if (!ft_initialization(&data))
 	{
-		ft_cleardata(data);
+		ft_cleardata(&data);
 		ft_err_message_exit("Initialization failed!", NULL);
 	}
-	if (!ft_parse_map(data, argv))
+	if (!ft_parse_map(&data, argv[1]))
 	{
-		ft_cleardata(data);
+		ft_cleardata(&data);
 		ft_err_message_exit("Parsing failed!", NULL);
 	}
 	ft_mlx_hooks(data);
-	ft_cleardata(data);
+	ft_cleardata(&data);
 	return (0);
 }

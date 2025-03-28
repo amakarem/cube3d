@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 12:53:29 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/28 17:36:44 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_init_var(t_data *data)
 	return (1);
 }
 
-int	ft_initialization(t_data *data)
+int	ft_initialization(t_data **data)
 {
-	data = malloc(sizeof(t_data));
+	*data = malloc(sizeof(t_data));
 	if (!data)
 		return (0);
-	data->buffer = NULL;
+	(*data)->buffer = NULL;
 	if (!ft_init_var(data))
 		return (0);
 	return (1);
