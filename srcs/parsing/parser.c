@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 18:31:18 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/29 12:52:19 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int    ft_get_textures(t_data **data, char *line)
 
 int ft_get_data(t_data **data, int fd)
 {
-    int     fd;
     char    *line;
     
     while (1)

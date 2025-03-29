@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkers2.c                                        :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 20:03:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 20:19:53 by tkeil            ###   ########.fr       */
+/*   Created: 2025/03/29 16:24:21 by tkeil             #+#    #+#             */
+/*   Updated: 2025/03/29 20:38:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int ft_is_map_closed(char **map)
+static int ft_is_map_closed(char **map)
 {
     size_t  x;
     size_t  y;
@@ -36,30 +36,37 @@ int ft_is_map_closed(char **map)
     return (1);
 }
 
-
-int ft_valid_map_characters(char **map)
+// Returns false, if the map contains one invalid character or if a line consists only of spaces (empty line).
+// Otherwise true.
+static int ft_valid_map_characters(char **map)
 {
     size_t  i;
     size_t  j;
+    int     count;
 
     i = 0;
+    count = 0;
     while (map[i])
     {
         j = 0;
         while (map[i][j])
         {
-            if (ft_strncmp("0", map[i][j], 1) && ft_strncmp("1", map[i][j], 1) &&
-                ft_strncmp("N", map[i][j], 1) && ft_strncmp("S", map[i][j], 1) &&
-                ft_strncmp("E", map[i][j], 1) && ft_strncmp("W", map[i][j], 1) &&
-                ft_strncmp(" ", map[i][j], 1))
-                return (0);            
+            if (!ft_strncmp("0", map[i][j], 1) || !ft_strncmp("1", map[i][j], 1) ||
+                !ft_strncmp("N", map[i][j], 1) || !ft_strncmp("S", map[i][j], 1) ||
+                !ft_strncmp("E", map[i][j], 1) || !ft_strncmp("W", map[i][j], 1))
+                count++;
+            else if (!ft_strncmp(" ", map[i][j], 1))
+                count = count;
+            else
+                return (0);          
             j++;
         }
         i++;
     }
+    return (count);
 }
 
-int ft_is_present_player_and_unique(char **map)
+static int ft_is_present_player_and_unique(char **map)
 {
     size_t  i;
     size_t  j;
@@ -80,4 +87,29 @@ int ft_is_present_player_and_unique(char **map)
         i++;
     }
     return (players == 1);
+}
+
+int ft_check_map(char *line, char *file, int fd)
+{
+    char    **map;
+    
+    map = ft_get_map(file, line, fd);
+    if (!map)
+        return (NULL);
+    if (!ft_valid_map_characters(map))
+    {
+        ft_free_ptr(&map);
+        return (ft_err_message("Error\n", "Invalid map character or an empty line."), 0);
+    }
+    if (!ft_is_present_player_and_unique(map))
+    {
+        ft_free_ptr(&map);
+        return (ft_err_message("Error\n", "Either more than 1 player or none in the map."), 0);
+    }
+    if (!ft_is_map_closed(map))
+    {
+        ft_free_ptr(&map);
+        return (ft_err_message("Error\n", "Map is not closed by walls."), 0);
+    }
+    return (ft_free_ptr(&map), 1);
 }

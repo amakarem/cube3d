@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 20:20:16 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:38:50 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,19 @@
 
 # define P 35
 # define M 46
+
+typedef struct s_validation
+{
+    bool    north_tex;
+    bool    south_tex;
+    bool    east_tex;
+    bool    west_tex;
+    bool    floor;
+    bool    ceiling;
+    bool    tex_and_cols;
+    bool    map_started;
+    bool    validated;
+}           t_validation;
 
 typedef struct s_img
 {
@@ -101,12 +114,10 @@ int ft_destroy(t_data *data);
 
 //validation
 int ft_validate_cub_file(char *file);
-int ft_check_map(char **split);
-int ft_check_colors(char **split);
-int ft_check_textures(char **split);
-int ft_is_map_closed(char **map);
-int ft_valid_map_characters(char **map);
-int ft_is_present_player_and_unique(char **map);
+int ft_check_textures(t_validation *checks, char **split);
+int ft_check_colors(t_validation *checks, char **split);
+int ft_check_map(char *line, char *file, int fd);
+bool ft_is_line_of_map(char *line);
 
 // initialization
 int ft_initialization(t_data **data);
@@ -140,6 +151,12 @@ int ft_valid_numbers(char *s);
 int ft_is_wall_blocked(char **map, int y, int x);
 int ft_closed_vertical(char **map, int y, int x);
 int ft_closed_horizontal(char **map, int y, int x);
+int ft_open_file(char *file, int *fd);
+void    ft_free(char **ptr);
+void    ft_init_checks(t_validation *checks);
+void    ft_update_check_tex_and_cols(t_validation *checks);
+int ft_get_map_height(char *file);
+char    **ft_get_map(char *file, char *line, int fd);
 
 
 // clearing

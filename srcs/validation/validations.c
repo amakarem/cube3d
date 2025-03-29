@@ -6,48 +6,53 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:16:28 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 17:13:33 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:37:13 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int  ft_validate_line(char *line)
+static int ft_check_textures_and_colors(t_validation *checks, char *line)
 {
     char    **split;
 
+    if (checks->map_started && !checks->tex_and_cols)
+        return (ft_err_message("Error\n", "Map started before Textures and colors were parsed!"), 0);
     split = ft_split(line, ' ');
     if (!split)
         return (0);
-    if (!ft_check_textures(split) ||
-        !ft_check_colors(split) ||
-        !ft_check_map(split))
+    if (!ft_check_textures(checks, split) || !ft_check_colors(checks, split))
         return (ft_free_ptr(&split), 0);
     return (ft_free_ptr(&split), 1);
 }
 
 static int  ft_validate_cub_format(char *file)
 {
-    int     fd;
-    char    *line;
+    int             fd;
+    char            *line;
+    t_validation    checks;
 
-    fd = open(file, O_RDONLY);
-    if (fd == -1)
-    {
-        write(STDERR_FILENO, "Error\n", 6);
-        ft_err_message("Could not open .cub file", NULL);
-        return (close(fd), 0);
-    }
+    if (ft_open_file(file, &fd) == -1)
+        return (0);
+    ft_init_checks(&checks);
     while (1)
     {
         line = get_next_line(fd);
         if (!line)
             break ;
-        if (!ft_validate_line(line))
-            return (close(fd), 0);
-        free(line);
+        checks.map_started = ft_is_line_of_map(line);
+        if (!ft_check_textures_and_colors(&checks, line))
+            break ;
+        ft_update_check_tex_and_cols(&checks);
+        if (checks.tex_and_cols && checks.map_started)
+        {
+            if (!ft_check_map(file, line, fd))
+                break ;
+            checks.validated = true;
+        }
+        ft_free(&line);
     }
-    return (close(fd), 1);
+    return (close(fd), ft_free(&line), checks.validated);
 }
 
 int ft_validate_cub_file(char *file)
@@ -57,15 +62,13 @@ int ft_validate_cub_file(char *file)
     if (ft_strlen(file) < 5)
     {
         write(STDERR_FILENO, "Error\n", 6);
-        ft_err_message(file, ": invalid .cub filename");
-        return (0);
+        return (ft_err_message(file, ": invalid .cub filename"), 0);
     }
     format = file + (ft_strlen(file) - 4);
     if (ft_strncmp(format, ".cub", 4) != 0)
     {
         write(STDERR_FILENO, "Error\n", 6);
-        ft_err_message(file, ": invalid .cub file extension");
-        return (0);
+        return (ft_err_message(file, ": invalid .cub file extension"), 0);
     }
     if (!ft_validate_cub_format(file))
         return (0);
