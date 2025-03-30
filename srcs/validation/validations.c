@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:16:28 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 20:37:13 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 13:30:12 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,11 @@ static int ft_check_textures_and_colors(t_validation *checks, char *line)
     return (ft_free_ptr(&split), 1);
 }
 
-static int  ft_validate_cub_format(char *file)
+static int  ft_validate_cub_format(char *file, int fd)
 {
-    int             fd;
     char            *line;
     t_validation    checks;
 
-    if (ft_open_file(file, &fd) == -1)
-        return (0);
     ft_init_checks(&checks);
     while (1)
     {
@@ -44,9 +41,9 @@ static int  ft_validate_cub_format(char *file)
         if (!ft_check_textures_and_colors(&checks, line))
             break ;
         ft_update_check_tex_and_cols(&checks);
-        if (checks.tex_and_cols && checks.map_started)
+        if (checks.tex_and_cols)
         {
-            if (!ft_check_map(file, line, fd))
+            if (!ft_check_map(file, fd))
                 break ;
             checks.validated = true;
         }
@@ -57,6 +54,7 @@ static int  ft_validate_cub_format(char *file)
 
 int ft_validate_cub_file(char *file)
 {
+    int     fd;
     char    *format;
 
     if (ft_strlen(file) < 5)
@@ -70,7 +68,9 @@ int ft_validate_cub_file(char *file)
         write(STDERR_FILENO, "Error\n", 6);
         return (ft_err_message(file, ": invalid .cub file extension"), 0);
     }
-    if (!ft_validate_cub_format(file))
+    if (ft_open_file(file, &fd) == -1)
         return (0);
+    if (!ft_validate_cub_format(file, fd))
+        return (ft_err_message("Error\n", ": invalid .cub file extension"), 0);
     return (ft_err_message(".cub file was validated successfully!", NULL), 1);
 }

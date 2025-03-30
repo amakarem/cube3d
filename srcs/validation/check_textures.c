@@ -6,11 +6,25 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:21:49 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 16:23:03 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 15:28:15 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int  ft_check_extension(char *file)
+{
+    char    *extension;
+    size_t  file_len;
+
+    file_len = ft_strlen(file);
+    if (file_len < 5)
+        return (0);
+    extension = file + (file_len - 4);
+    if (!ft_strncmp(extension, ".xpm", 4) || !ft_strncmp(extension, ".png", 4))
+        return (1);
+    return (0);
+}
 
 static int ft_check_north_south(t_validation *checks, char **split)
 {
@@ -40,7 +54,7 @@ static int ft_check_east_west(t_validation *checks, char **split)
     else if (!ft_strncmp(split[0], "WE", ft_strlen(split[0])))
     {
         if (checks->west_tex)
-            return (ft_err_message("Error\n", "Duplicate west texture definition."), 0);
+            return (ft_err_message("Error\n", "Duplicate west texture definition."), 0);        
         checks->west_tex = true;
     }
     return (1);
@@ -58,12 +72,17 @@ int ft_check_textures(t_validation *checks, char **split)
         if (ft_ptr_len(split) != 2)
         {
             write(STDERR_FILENO, "Error\n", 6);
-            return (ft_err_message(split[1], ": invalid texture path"), 0);
+            return (ft_err_message(split[1], ": invalid texture path."), 0);
+        }
+        if (!ft_check_extension(split[1]))
+        {
+            write(STDERR_FILENO, "Error\n", 6);
+            return (ft_err_message(split[1], ": Wrong file extension."), 0);
         }
         else if (!*split[1] || open(split[1], O_RDONLY) == -1)
         {
             write(STDERR_FILENO, "Error\n", 6);
-            return (ft_err_message(split[1], ": could not open texture file"), 0);
+            return (ft_err_message(split[1], ": could not open texture file."), 0);
         }
         close(split[1]);
     }

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:24:21 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 20:38:33 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 14:19:27 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ static int ft_is_present_player_and_unique(char **map)
     return (players == 1);
 }
 
-int ft_check_map(char *line, char *file, int fd)
+int ft_check_map(char *file, int fd)
 {
     char    **map;
-    
-    map = ft_get_map(file, line, fd);
+
+    map = ft_get_map(file, fd);
     if (!map)
         return (NULL);
     if (!ft_valid_map_characters(map))
