@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/03/30 16:45:07 by tkeil            ###   ########.fr        #
+#    Updated: 2025/03/30 16:53:18 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,15 +43,16 @@ MESSAGING = err_message.c
 PARSING = parser.c get_textures.c get_colors.c
 UTILS = utils_validating.c utils_validating2.c utils_staff.c numbers.c
 VALIDATION =  validations.c check_textures.c check_colors.c check_map.c
+RAYCASTING = raycast.c
 
 # ADD the Files to SRCS and add a prefix for a clean structure
 SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
 				$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION)) \
-				$(addprefix validation/, $(VALIDATION))
+				$(addprefix validation/, $(VALIDATION)) $(addprefix raycasting/, $(RAYCASTING))
 
 BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
 						$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION)) \
-						$(addprefix validation/, $(VALIDATION))
+						$(addprefix validation/, $(VALIDATION)) $(addprefix raycasting/, $(RAYCASTING))
 
 SRCS_PATHS = $(addprefix $(SRCSDIR), $(SRCS))
 BONUS_PATHS = $(addprefix $(SRCSDIR), $(BONUS_SRCS))

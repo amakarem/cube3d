@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 21:24:17 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 16:50:59 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int main(int argc, char **argv)
 	{
 		ft_cleardata(&data);
 		ft_err_message_exit("Parsing failed!", NULL);
+	}
+	if (!ft_raycast(&data))
+	{
+		ft_cleardata(&data);
+		ft_err_message_exit("Raycasting failed!", NULL);
 	}
 	ft_mlx_hooks(data);
 	ft_cleardata(&data);

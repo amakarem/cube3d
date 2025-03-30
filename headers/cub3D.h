@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 16:40:53 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 16:52:31 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,8 @@ char **ft_get_map(char *file, int fd);
 
 // clearing
 void ft_cleardata(t_data **data);
+
+// raycasting
+int ft_raycast(t_data **data);
 
 #endif
