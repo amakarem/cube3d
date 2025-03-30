@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 16:50:59 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 17:04:52 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	ft_mlx_hooks(t_data *data)
 	mlx_loop(data->mlx_ptr);
 }
 
+void	ft_init_mouse(t_mouse *mouse)
+{
+	mouse->ctrl_down = false;
+	mouse->mouse_down = false;
+	mouse->mouse_x = 0;
+	mouse->mouse_y = 0;
+}
+
 int main(int argc, char **argv)
 {
 	t_data	*data;
@@ -39,22 +47,17 @@ int main(int argc, char **argv)
 		ft_err_message_exit("Wrong number of arguments!", NULL);
 	if (!ft_validate_cub_file(argv[1]))
 		ft_err_message_exit("Error\n", ".cub file validation failed!");
-	if (!ft_initialization(&data, argv[1]))
+	if (!ft_initialization(&data, argv[1]) || !ft_parse_map(&data, argv[1]))
 	{
 		ft_cleardata(&data);
 		ft_err_message_exit("Initialization failed!", NULL);
-	}
-	if (!ft_parse_map(&data, argv[1]))
-	{
-		ft_cleardata(&data);
-		ft_err_message_exit("Parsing failed!", NULL);
 	}
 	if (!ft_raycast(&data))
 	{
 		ft_cleardata(&data);
 		ft_err_message_exit("Raycasting failed!", NULL);
 	}
+	ft_init_mouse(&data->mouse);
 	ft_mlx_hooks(data);
-	ft_cleardata(&data);
-	return (0);
+	return (ft_cleardata(&data), 0);
 }

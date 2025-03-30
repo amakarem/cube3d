@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 16:52:31 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/03/30 19:35:12 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ typedef struct s_validation
     bool validated;
 } t_validation;
 
+typedef struct s_mouse
+{
+    bool mouse_down;
+    bool ctrl_down;
+    int mouse_x;
+    int mouse_y;
+} t_mouse;
+
 typedef struct s_img
 {
     void *img;
@@ -63,14 +71,6 @@ typedef struct s_img
     int bpp;
     int endian;
 } t_img;
-
-typedef struct s_mouse
-{
-    bool mouse_down;
-    bool ctrl_down;
-    int mouse_x;
-    int mouse_y;
-} t_mouse;
 
 typedef struct s_texture
 {
