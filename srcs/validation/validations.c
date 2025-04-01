@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:16:28 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 17:59:49 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:36:32 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int ft_check_textures_and_colors(t_validation *checks, char *line)
 {
     char    **split;
 
+	if (!line || !*line)
+		return (1);
     if (checks->map_started && !checks->tex_and_cols)
 		return (ft_err_message("Error\n", "Map started before textures and colors were parsed!"), 0);
     split = ft_split(line, ' ');

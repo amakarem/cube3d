@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:25:48 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:30:03 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ int main(int argc, char **argv)
 		ft_err_message_exit("Initialization failed!", NULL);
 	}
 	// ft_print_map(data->map);
-	if (!ft_raycast(&data))
-	{
-		ft_cleardata(&data);
-		ft_err_message_exit("Raycasting failed!", NULL);
-	}
-	ft_init_mouse(&data->mouse);
+	// if (!ft_raycast(&data))
+	// {
+	// 	ft_cleardata(&data);
+	// 	ft_err_message_exit("Raycasting failed!", NULL);
+	// }
+	// ft_init_mouse(&data->mouse);
 	ft_mlx_hooks(data);
 	return (ft_cleardata(&data), 0);
 }

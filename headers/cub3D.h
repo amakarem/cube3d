@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:00:22 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:29:07 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,60 +44,60 @@
 
 typedef struct s_validation
 {
-    bool north_tex;
-    bool south_tex;
-    bool east_tex;
-    bool west_tex;
-    bool floor;
-    bool ceiling;
-    bool tex_and_cols;
-    bool map_started;
-    bool validated;
+	bool north_tex;
+	bool south_tex;
+	bool east_tex;
+	bool west_tex;
+	bool floor;
+	bool ceiling;
+	bool tex_and_cols;
+	bool map_started;
+	bool validated;
 } t_validation;
 
 typedef struct s_mouse
 {
-    bool mouse_down;
-    bool ctrl_down;
-    int mouse_x;
-    int mouse_y;
+	bool mouse_down;
+	bool ctrl_down;
+	int mouse_x;
+	int mouse_y;
 } t_mouse;
 
 typedef struct s_img
 {
-    void *img;
-    char *data;
-    int linelen;
-    int bpp;
-    int endian;
+	void *img;
+	char *data;
+	int linelen;
+	int bpp;
+	int endian;
 } t_img;
 
 typedef struct s_texture
 {
-    void *img;
-    char *data;
-    int linelen;
-    int bpp;
-    int endian;
-    int width;
-    int height;
+	void *img;
+	char *data;
+	int linelen;
+	int bpp;
+	int endian;
+	int width;
+	int height;
 } t_texture;
 
 typedef struct s_data
 {
-    void *mlx_ptr;
-    void *mlx_win;
-    t_img *buffer;
-    int wnd_w;
-    int wnd_h;
-    char **map;
-    uint32_t floor_color;
-    uint32_t ceiling_color;
-    t_texture *north;
-    t_texture *south;
-    t_texture *east;
-    t_texture *west;
-    t_mouse mouse;
+	void *mlx_ptr;
+	void *mlx_win;
+	t_img *buffer;
+	int wnd_w;
+	int wnd_h;
+	char **map;
+	uint32_t floor_color;
+	uint32_t ceiling_color;
+	t_texture *north;
+	t_texture *south;
+	t_texture *east;
+	t_texture *west;
+	t_mouse mouse;
 } t_data;
 
 int ft_destroy(t_data *data);
@@ -114,7 +114,7 @@ int ft_initialization(t_data **data, char *file);
 
 // parsing
 int ft_parse(t_data **data, char *file);
-int    ft_get_textures(t_data **data, char **split);
+int ft_get_textures(t_data **data, char **split);
 int ft_get_colors(t_data **data, char **split);
 
 // messaging
@@ -136,7 +136,7 @@ void ft_action_D(t_data *data);
 int ft_wnd_resize(t_data **data, int delta_x, int delta_y);
 
 // utils
-char	*ft_trim_newlines(char *line);
+char *ft_trim_newlines(char *line);
 size_t ft_ptr_len(char **ptr);
 int ft_hex_to_int(const char *str);
 void ft_free_ptr(char ***ptr);

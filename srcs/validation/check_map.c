@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:24:21 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:21:33 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:40:31 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ static int ft_valid_map_characters(char **map)
     while (map[i])
     {
         j = 0;
+		if (map[i][0])
+			return (0);
         while (map[i][j])
         {
-			// printf("char %c, int %i\n", map[i][j], map[i][j]);
             if (!ft_strncmp("0", &map[i][j], 1) || !ft_strncmp("1", &map[i][j], 1) ||
                 !ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S", &map[i][j], 1) ||
                 !ft_strncmp("E", &map[i][j], 1) || !ft_strncmp("W", &map[i][j], 1))
