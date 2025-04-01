@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:30:03 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 20:05:50 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void	ft_mlx_hooks(t_data *data)
 	mlx_hook(data->mlx_win, 5, 1L << 3, ft_mouse_up, data);
 	mlx_hook(data->mlx_win, 6, 1L << 6, ft_mousemove, data);
 	mlx_loop(data->mlx_ptr);
-}
-
-void	ft_init_mouse(t_mouse *mouse)
-{
-	mouse->ctrl_down = false;
-	mouse->mouse_down = false;
-	mouse->mouse_x = 0;
-	mouse->mouse_y = 0;
 }
 
 void	ft_print_map(char **map)
@@ -63,12 +55,12 @@ int main(int argc, char **argv)
 		ft_err_message_exit("Initialization failed!", NULL);
 	}
 	// ft_print_map(data->map);
-	// if (!ft_raycast(&data))
-	// {
-	// 	ft_cleardata(&data);
-	// 	ft_err_message_exit("Raycasting failed!", NULL);
-	// }
-	// ft_init_mouse(&data->mouse);
+	if (!ft_raycast(&data))
+	{
+		ft_cleardata(&data);
+		ft_err_message_exit("Raycasting failed!", NULL);
+	}
+	ft_init_mouse(&data->mouse);
 	ft_mlx_hooks(data);
 	return (ft_cleardata(&data), 0);
 }

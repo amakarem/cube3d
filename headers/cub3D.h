@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:29:07 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 19:57:44 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 #include "libft.h"
 #include "mlx.h"
 
-#define WIDTH 800
+#define WIDTH 1200
 #define HEIGHT 800
 
+#define BLOCK_SIZE 64
 #define ESC 53
 #define CTRL 256
 
@@ -83,22 +84,39 @@ typedef struct s_texture
 	int height;
 } t_texture;
 
+typedef struct	s_keyboard
+{
+	bool	w_down;
+	bool	a_down;
+	bool	s_down;
+	bool	d_down;
+}			t_keyboard;
+
+typedef struct	s_player
+{
+	float	x;
+	float	y;
+	float	angle;
+}			t_player;
+
 typedef struct s_data
 {
-	void *mlx_ptr;
-	void *mlx_win;
-	t_img *buffer;
-	int wnd_w;
-	int wnd_h;
-	char **map;
-	uint32_t floor_color;
-	uint32_t ceiling_color;
-	t_texture *north;
-	t_texture *south;
-	t_texture *east;
-	t_texture *west;
-	t_mouse mouse;
-} t_data;
+	void		*mlx_ptr;
+	void		*mlx_win;
+	t_img		*buffer;
+	int			wnd_w;
+	int			wnd_h;
+	char		**map;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
+	t_texture	*north;
+	t_texture	*south;
+	t_texture	*east;
+	t_texture	*west;
+	t_player	player;
+	t_keyboard	keyboard;
+	t_mouse		mouse;
+}				t_data;
 
 int ft_destroy(t_data *data);
 
@@ -110,7 +128,9 @@ int ft_check_map(char *file, int fd);
 bool ft_is_line_of_map(char *line);
 
 // initialization
-int ft_initialization(t_data **data, char *file);
+void	ft_init_keyboard(t_data **data);
+void	ft_init_player(t_data **data, char **map);
+int		ft_initialization(t_data **data, char *file);
 
 // parsing
 int ft_parse(t_data **data, char *file);

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:20:39 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 20:05:29 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_new_window_and_image(t_data **data)
 	void	*mlx;
 	t_img	*img;
 	
-	h = (*data)->wnd_h;
-	w = (*data)->wnd_w;
+	h = (*data)->wnd_h * ((*data)->wnd_h > 0) + HEIGHT * ((*data)->wnd_h == 0);
+	w = (*data)->wnd_w * ((*data)->wnd_w > 0) + WIDTH * ((*data)->wnd_w == 0);
 	mlx = (*data)->mlx_ptr;
 	(*data)->mlx_win = mlx_new_window(mlx, w, h, "cub3D");
 	if (!(*data)->mlx_win)
@@ -99,5 +99,7 @@ int	ft_initialization(t_data **data, char *file)
 		return (0);
 	if (!ft_create_map(data, file))
 		return (0);
+	ft_init_keyboard(data);
+	ft_init_player(data, (*data)->map);
 	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:21:49 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 16:17:13 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:56:39 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int ft_check_extension(char *file)
+static int	ft_check_extension(char *file)
 {
 	char	*extension;
 	size_t	file_len;
@@ -26,61 +26,66 @@ static int ft_check_extension(char *file)
 	return (0);
 }
 
-static int ft_check_north_south(t_validation *checks, char **split)
+static int	ft_check_north_south(t_validation *checks, char **split)
 {
 	if (!ft_strncmp(split[0], "NO", ft_strlen(split[0])))
 	{
 		if (checks->north_tex)
-			return (ft_err_message("Error\n", "Duplicate north texture definition."), 0);
+			return (ft_err_message("Error\n", \
+				"Duplicate north texture definition."), 0);
 		checks->north_tex = true;
 	}
 	else if (!ft_strncmp(split[0], "SO", ft_strlen(split[0])))
 	{
 		if (checks->south_tex)
-			return (ft_err_message("Error\n", "Duplicate south texture definition."), 0);
+			return (ft_err_message("Error\n", \
+				"Duplicate south texture definition."), 0);
 		checks->south_tex = true;
 	}
 	return (1);
 }
 
-static int ft_check_east_west(t_validation *checks, char **split)
+static int	ft_check_east_west(t_validation *checks, char **split)
 {
 	if (!ft_strncmp(split[0], "EA", ft_strlen(split[0])))
 	{
 		if (checks->east_tex)
-			return (ft_err_message("Error\n", "Duplicate east texture definition."), 0);
+			return (ft_err_message("Error\n", \
+				"Duplicate east texture definition."), 0);
 		checks->east_tex = true;
 	}
 	else if (!ft_strncmp(split[0], "WE", ft_strlen(split[0])))
 	{
 		if (checks->west_tex)
-			return (ft_err_message("Error\n", "Duplicate west texture definition."), 0);
+			return (ft_err_message("Error\n", \
+				"Duplicate west texture definition."), 0);
 		checks->west_tex = true;
 	}
 	return (1);
 }
 
-int ft_check_textures(t_validation *checks, char **split)
+int	ft_check_textures(t_validation *checks, char **split)
 {
 	int	fd;
-	
-	if (ft_strncmp(split[0], "NO", ft_strlen(split[0])) && ft_strncmp(split[0], "SO", ft_strlen(split[0])) &&
-		ft_strncmp(split[0], "EA", ft_strlen(split[0])) && ft_strncmp(split[0], "WE", ft_strlen(split[0])))
+
+	if (ft_strncmp(split[0], "NO", ft_strlen(split[0])) && \
+		ft_strncmp(split[0], "SO", ft_strlen(split[0])) && \
+		ft_strncmp(split[0], "EA", ft_strlen(split[0])) && \
+		ft_strncmp(split[0], "WE", ft_strlen(split[0])))
 		return (1);
 	if (!ft_check_north_south(checks, split))
 		return (0);
 	if (!ft_check_east_west(checks, split))
 		return (0);
-	// printf("floor, ceiling, north, south, east, west: %i, %i, %i, %i, %i, %i", checks->floor, checks->ceiling, checks->north_tex, checks->south_tex, checks->east_tex, checks->west_tex);
-	if (checks->north_tex == true || checks->south_tex == true ||
+	if (checks->north_tex == true || checks->south_tex == true || \
 		checks->east_tex == true || checks->west_tex == true)
 	{
 		if (ft_ptr_len(split) != 2)
 			return (ft_err_message("Error\n", "Invalid texture path."), 0);
 		if (!ft_check_extension(split[1]))
-			return (ft_err_message("Error\n", "Wrong texture file extension."), 0);
+			return (ft_err_message("Error\n", "Wrong texture extension."), 0);
 		if (ft_open_file(split[1], &fd) == -1)
-			return (ft_err_message("Error\n", "Could not open texture file."), 0);
+			return (ft_err_message("Error\n", "Couldn't open texture."), 0);
 		close(fd);
 	}
 	printf("checked texture\n");
