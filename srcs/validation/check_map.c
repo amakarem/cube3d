@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:24:21 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 14:19:27 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:21:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int ft_is_map_closed(char **map)
     size_t  y;
 
     y = 0;
-    while (map[y][x])
+    while (map[y])
     {
         x = 0;
         while (map[y][x])
@@ -51,13 +51,12 @@ static int ft_valid_map_characters(char **map)
         j = 0;
         while (map[i][j])
         {
-            if (!ft_strncmp("0", map[i][j], 1) || !ft_strncmp("1", map[i][j], 1) ||
-                !ft_strncmp("N", map[i][j], 1) || !ft_strncmp("S", map[i][j], 1) ||
-                !ft_strncmp("E", map[i][j], 1) || !ft_strncmp("W", map[i][j], 1))
+			// printf("char %c, int %i\n", map[i][j], map[i][j]);
+            if (!ft_strncmp("0", &map[i][j], 1) || !ft_strncmp("1", &map[i][j], 1) ||
+                !ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S", &map[i][j], 1) ||
+                !ft_strncmp("E", &map[i][j], 1) || !ft_strncmp("W", &map[i][j], 1))
                 count++;
-            else if (!ft_strncmp(" ", map[i][j], 1))
-                count = count;
-            else
+            else if (ft_strncmp(" ", &map[i][j], 1) && count == 0)
                 return (0);          
             j++;
         }
@@ -79,8 +78,8 @@ static int ft_is_present_player_and_unique(char **map)
         j = 0;
         while (map[i][j])
         {
-            if (!ft_strncmp("N", map[i][j], 1) && !ft_strncmp("S", map[i][j], 1) &&
-                !ft_strncmp("E", map[i][j], 1) && !ft_strncmp("W", map[i][j], 1))
+            if (!ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S", &map[i][j], 1) ||
+                !ft_strncmp("E", &map[i][j], 1) || !ft_strncmp("W", &map[i][j], 1))
                 players++;
             j++;
         }
@@ -95,7 +94,7 @@ int ft_check_map(char *file, int fd)
 
     map = ft_get_map(file, fd);
     if (!map)
-        return (NULL);
+        return (0);
     if (!ft_valid_map_characters(map))
     {
         ft_free_ptr(&map);

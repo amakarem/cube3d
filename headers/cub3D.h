@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 19:35:12 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:00:22 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void ft_action_D(t_data *data);
 int ft_wnd_resize(t_data **data, int delta_x, int delta_y);
 
 // utils
+char	*ft_trim_newlines(char *line);
 size_t ft_ptr_len(char **ptr);
 int ft_hex_to_int(const char *str);
 void ft_free_ptr(char ***ptr);

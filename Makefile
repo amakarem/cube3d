@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/03/30 16:53:18 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/01 14:59:38 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ ifeq ($(UNAME), Linux)
 	MINILIBX = $(MINILIBXLINUXDIR)/libmlx_Linux.a
 else
     INCLUDES = -I/usr/local/include -I$(MINILIBXDIR) -I$(HEADERSDIR) -I$(HEADERS_LIBFTDIR)
-    LIBS = -L/usr/local/lib/ -framework OpenGL -framework AppKit -L$(LIBFTDIR) -lft -L$(MINILIBXDIR) -lmlx
+    LIBS = -L/usr/local/lib/ -framework OpenGL -framework AppKit -L$(LIBFTDIR) -lft -L$(MINILIBXDIR) -lmlx -lz
 	MINILIBX = $(MINILIBXDIR)/libmlx.a
 endif
 
@@ -41,9 +41,9 @@ INITIALIZATION = heap_allocations.c
 KEYBOARD = actions.c controllers.c wnd_resize.c
 MESSAGING = err_message.c
 PARSING = parser.c get_textures.c get_colors.c
+RAYCASTING = raycast.c
 UTILS = utils_validating.c utils_validating2.c utils_staff.c numbers.c
 VALIDATION =  validations.c check_textures.c check_colors.c check_map.c
-RAYCASTING = raycast.c
 
 # ADD the Files to SRCS and add a prefix for a clean structure
 SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \

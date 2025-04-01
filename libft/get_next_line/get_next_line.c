@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:44:02 by tkeil             #+#    #+#             */
-/*   Updated: 2024/11/20 21:20:04 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 16:41:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,103 @@ static char	*ft_read_and_join(int fd, char **rest, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*rest;
+	static char	*rest[ULIMIT];
 	char		buffer[BUFFER_SIZE + 1];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!rest)
-		rest = ft_strdup2("");
-	if (!rest)
+	if (!rest[fd])
+		rest[fd] = ft_strdup2("");
+	if (!rest[fd])
 		return (NULL);
-	line = ft_read_and_join(fd, &rest, buffer);
+	line = ft_read_and_join(fd, &rest[fd], buffer);
 	if (!line)
-		ft_free(&rest);
+		ft_free(&rest[fd]);
 	return (line);
 }
+
+// static void	ft_free(char **ptr)
+// {
+// 	if (*ptr)
+// 	{
+// 		free(*ptr);
+// 		*ptr = NULL;
+// 	}
+// }
+
+// static char	*ft_process_line(char **rest)
+// {
+// 	char	*line;
+// 	char	*ptr_nl;
+// 	char	*temp;
+
+// 	if (!*rest || **rest == '\0')
+// 		return (ft_free(rest), NULL);
+// 	ptr_nl = ft_strchr2(*rest, '\n');
+// 	if (ptr_nl)
+// 	{
+// 		line = ft_substr2(*rest, 0, ptr_nl - *rest + 1);
+// 		if (!line)
+// 			return (ft_free(rest), NULL);
+// 		temp = ft_strdup2(ptr_nl + 1);
+// 		if (!temp)
+// 			return (ft_free(&line), ft_free(rest), NULL);
+// 		ft_free(rest);
+// 		*rest = temp;
+// 		return (line);
+// 	}
+// 	line = ft_strdup2(*rest);
+// 	return (ft_free(rest), line);
+// }
+
+// static char	*ft_free_and_return_null(char **rest)
+// {
+// 	ft_free(rest);
+// 	return (NULL);
+// }
+
+// static char	*ft_read_and_join(int fd, char **rest, char *buffer)
+// {
+// 	ssize_t	bytes;
+// 	char	*temp;
+
+// 	while (!ft_strchr2(*rest, '\n'))
+// 	{
+// 		bytes = read(fd, buffer, BUFFER_SIZE);
+// 		if (bytes < 0)
+// 			return (ft_free_and_return_null(rest));
+// 		if (bytes == 0)
+// 			break ;
+// 		buffer[bytes] = '\0';
+// 		temp = ft_strjoin2(*rest, buffer);
+// 		if (!temp)
+// 			return (ft_free_and_return_null(rest));
+// 		ft_free(rest);
+// 		*rest = temp;
+// 	}
+// 	if (*rest)
+// 		return (ft_process_line(rest));
+// 	return (NULL);
+// }
+
+// char	*get_next_line(int fd)
+// {
+// 	static char	*rest;
+// 	char		buffer[BUFFER_SIZE + 1];
+// 	char		*line;
+
+// 	if (fd < 0 || BUFFER_SIZE <= 0)
+// 		return (NULL);
+// 	if (!rest)
+// 		rest = ft_strdup2("");
+// 	if (!rest)
+// 		return (NULL);
+// 	line = ft_read_and_join(fd, &rest, buffer);
+// 	if (!line)
+// 		ft_free(&rest);
+// 	return (line);
+// }
 
 //  int main(void)
 //  {

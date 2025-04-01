@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 17:30:23 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 14:13:07 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_mousemove(int x, int y, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	data->mouse.mouse_x = x;
+	data->mouse.mouse_y = y;
 	if (data->mouse.mouse_down)
 	{
         write(STDOUT_FILENO, "mouse move action", 17);
@@ -81,13 +83,13 @@ int	ft_keydown(int key, void *param)
 	data = (t_data *)param;
 	if (key == CTRL)
 		data->mouse.ctrl_down = true;
-    if (key = W)
+    if (key == W)
         ft_action_W(data);
-    else if (key = A)
+    else if (key == A)
         ft_action_A(data);
-    else if (key = S)
+    else if (key == S)
         ft_action_S(data);
-    else if (key = D)
+    else if (key == D)
         ft_action_D(data);
 	return (0);
 }

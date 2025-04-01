@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 16:41:42 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:20:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int ft_parse(t_data **data, char *file)
 {
     int fd;
 
-    if (ft_open_file(file, &fd))
+    if (ft_open_file(file, &fd) == -1)
         return (0);
     if (!ft_get_data(data, fd))
         return (close(fd), 0);

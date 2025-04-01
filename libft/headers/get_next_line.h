@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:35:41 by tkeil             #+#    #+#             */
-/*   Updated: 2024/11/20 14:11:40 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 16:40:15 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #  define BUFFER_SIZE 500
 # endif
 
+# define ULIMIT 256
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>

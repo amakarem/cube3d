@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:53:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 16:40:11 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:00:14 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ int ft_open_file(char *file, int *fd)
 {
     *fd = open(file, O_RDONLY);
     if (*fd == -1)
-    {
-        write(STDERR_FILENO, "Error\n", 6);
-        ft_err_message("Could not open .cub file", NULL);
         return (-1);
-    }
     return (*fd);
 }
 
@@ -57,4 +53,14 @@ size_t  ft_ptr_len(char **ptr)
     while (ptr[i])
         i++;
     return (i);
+}
+
+char	*ft_trim_newlines(char *line)
+{
+	char	*ptr;
+
+	if (!line)
+		return (NULL);
+	ptr = ft_strtrim(line, "\n");
+	return (free(line), ptr);
 }

@@ -6,13 +6,13 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:09:09 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 16:09:39 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 14:10:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int ft_file_to_image(void *mlx, char *file, int *w, int *h)
+static void *ft_file_to_image(void *mlx, char *file, int *w, int *h)
 {
     void    *img;
     char    *extension;

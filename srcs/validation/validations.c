@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:16:28 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/30 13:30:12 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 17:59:49 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int ft_check_textures_and_colors(t_validation *checks, char *line)
     char    **split;
 
     if (checks->map_started && !checks->tex_and_cols)
-        return (ft_err_message("Error\n", "Map started before Textures and colors were parsed!"), 0);
+		return (ft_err_message("Error\n", "Map started before textures and colors were parsed!"), 0);
     split = ft_split(line, ' ');
     if (!split)
         return (0);
@@ -34,7 +34,7 @@ static int  ft_validate_cub_format(char *file, int fd)
     ft_init_checks(&checks);
     while (1)
     {
-        line = get_next_line(fd);
+        line = ft_trim_newlines(get_next_line(fd));
         if (!line)
             break ;
         checks.map_started = ft_is_line_of_map(line);
@@ -60,17 +60,17 @@ int ft_validate_cub_file(char *file)
     if (ft_strlen(file) < 5)
     {
         write(STDERR_FILENO, "Error\n", 6);
-        return (ft_err_message(file, ": invalid .cub filename"), 0);
+        return (ft_err_message("Invalid .cub filename", NULL), 0);
     }
     format = file + (ft_strlen(file) - 4);
     if (ft_strncmp(format, ".cub", 4) != 0)
     {
         write(STDERR_FILENO, "Error\n", 6);
-        return (ft_err_message(file, ": invalid .cub file extension"), 0);
+        return (ft_err_message("Invalid .cub file extension", NULL), 0);
     }
     if (ft_open_file(file, &fd) == -1)
         return (0);
     if (!ft_validate_cub_format(file, fd))
-        return (ft_err_message("Error\n", ": invalid .cub file extension"), 0);
+        return (ft_err_message("Error\n", "Invalid .cub file format"), 0);
     return (ft_err_message(".cub file was validated successfully!", NULL), 1);
 }

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 20:07:19 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 20:48:25 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:14:16 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,22 @@ int ft_closed_horizontal(char **map, int y, int x)
     _x = x;
     left = false;
     right = false;
-    while (_x >=0)
+    while (_x--)
     {
-        if (map[y][_x--] == '1')
-            left = true;
+        if (map[y][_x] == '1')
+		{
+			left = true;
+			break ;
+		}
     }
     while (map[y][x])
     {
-        if (map[y][x++] == '1')
-            right = true;
+        if (map[y][x] == '1')
+		{
+			right = true;
+			break ;
+		}
+		x++;
     }
     return (left && right);
 }
@@ -43,15 +50,22 @@ int ft_closed_vertical(char **map, int y, int x)
     _y = y;
     top = false;
     bottom = false;
-    while (_y >=0)
+    while (_y--)
     {
-        if (map[_y--][x] == '1')
-            top = true;
+        if (map[_y][x] == '1')
+		{
+			top = true;
+			break ;
+		}
     }
     while (map[y][x])
     {
-        if (map[y++][x] == '1')
-            bottom = true;
+        if (map[y][x] == '1')
+		{
+			bottom = true;
+			break ;
+		}
+		y++;
     }
     return (top && bottom);
 }
@@ -60,6 +74,8 @@ int ft_closed_vertical(char **map, int y, int x)
 // if not, then the map is not closed by walls.
 int ft_is_wall_blocked(char **map, int y, int x)
 {
+	if (map[y][x] == '1' || map[y][x] == ' ')
+		return (1);
     return (ft_closed_horizontal(map, y, x) && ft_closed_vertical(map, y, x));
 }
 

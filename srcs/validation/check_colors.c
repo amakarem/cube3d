@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:22:58 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/29 16:23:08 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/01 16:19:23 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int ft_check_colors(t_validation *checks, char **split)
 {
+	if (ft_strncmp(split[0], "F", ft_strlen(split[0])) && ft_strncmp(split[0], "C", ft_strlen(split[0])))
+		return (1);
     if (!ft_strncmp(split[0], "F", ft_strlen(split[0])))
     {
         if (checks->floor)
@@ -33,5 +35,6 @@ int ft_check_colors(t_validation *checks, char **split)
         else if (!ft_valid_numbers(split[1]))
             return (ft_err_message("Error\n", "Invalid floor/ceiling color format"), 0);
     }
+	printf("checked color\n");
     return (1);
 }
