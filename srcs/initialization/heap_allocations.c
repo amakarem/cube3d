@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heap_allocations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 20:05:29 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/02 12:59:11 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_new_window_and_image(t_data **data)
 	int		w;
 	void	*mlx;
 	t_img	*img;
-	
+
 	h = (*data)->wnd_h * ((*data)->wnd_h > 0) + HEIGHT * ((*data)->wnd_h == 0);
 	w = (*data)->wnd_w * ((*data)->wnd_w > 0) + WIDTH * ((*data)->wnd_w == 0);
 	mlx = (*data)->mlx_ptr;
@@ -32,14 +32,17 @@ int	ft_new_window_and_image(t_data **data)
 	img->img = mlx_new_image(mlx, w, h);
 	if (!img->img)
 		return (0);
-	img->data = mlx_get_data_addr(img->img, &img->bpp, &img->linelen, &img->endian);
+	img->data = mlx_get_data_addr(img->img, &img->bpp, &img->linelen,
+			&img->endian);
 	if (!img->data)
 		return (0);
 	return (1);
 }
 
-// sets everything to NULL -> in case something can not allocate, the cleardata function
-// just frees all available heap allocations and it doesn't occur a bad access error.
+// sets everything to NULL -> in case something can not allocate,
+// the cleardata function
+// just frees all available heap allocations and it
+// doesn't occur a bad access error.
 static void	ft_init_null(t_data **data)
 {
 	(*data)->mlx_ptr = NULL;
@@ -62,8 +65,7 @@ static int	ft_create_textures(t_data **data)
 	(*data)->south = malloc(sizeof(t_texture));
 	(*data)->east = malloc(sizeof(t_texture));
 	(*data)->west = malloc(sizeof(t_texture));
-	if (!(*data)->east || !(*data)->west ||
-		!(*data)->north || !(*data)->south)
+	if (!(*data)->east || !(*data)->west || !(*data)->north || !(*data)->south)
 		return (0);
 	(*data)->north->img = NULL;
 	(*data)->south->img = NULL;

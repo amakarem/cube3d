@@ -15,20 +15,20 @@
 // convert 0xFFFF color values to integers
 int	ft_hex_to_int(const char *str)
 {
-	int		i;
-	int 	sum;
-    int		index;
+	int	i;
+	int	sum;
+	int	index;
 
 	i = 2;
 	sum = 0;
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
-            index = str[i] - '0';
+			index = str[i] - '0';
 		else if (str[i] >= 'a' && str[i] <= 'f')
-            index = str[i] - 'a' + 10;
+			index = str[i] - 'a' + 10;
 		else if (str[i] >= 'A' && str[i] <= 'F')
-            index = str[i] - 'A' + 10;
+			index = str[i] - 'A' + 10;
 		else
 			return (-1);
 		sum = sum * 16 + index;

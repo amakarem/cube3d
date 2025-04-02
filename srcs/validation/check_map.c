@@ -23,8 +23,8 @@ static int	ft_is_map_closed(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '0' || map[y][x] == 'N' ||
-				map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
+			if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
 			{
 				if (!ft_is_wall_blocked(map, y, x))
 					return (0);
@@ -54,9 +54,10 @@ static int	ft_valid_map_characters(char **map)
 			return (0);
 		while (map[i][j])
 		{
-			if (!ft_strncmp("0", &map[i][j], 1) || !ft_strncmp("1", &map[i][j], 1) ||
-				!ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S", &map[i][j], 1) ||
-				!ft_strncmp("E", &map[i][j], 1) || !ft_strncmp("W", &map[i][j], 1))
+			if (!ft_strncmp("0", &map[i][j], 1) || !ft_strncmp("1", &map[i][j],
+					1) || !ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S",
+					&map[i][j], 1) || !ft_strncmp("E", &map[i][j], 1)
+				|| !ft_strncmp("W", &map[i][j], 1))
 				count++;
 			else if (ft_strncmp(" ", &map[i][j], 1) && count == 0)
 				return (0);
@@ -80,8 +81,9 @@ static int	ft_is_present_player_and_unique(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (!ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S", &map[i][j], 1) ||
-				!ft_strncmp("E", &map[i][j], 1) || !ft_strncmp("W", &map[i][j], 1))
+			if (!ft_strncmp("N", &map[i][j], 1) || !ft_strncmp("S", &map[i][j],
+					1) || !ft_strncmp("E", &map[i][j], 1) || !ft_strncmp("W",
+					&map[i][j], 1))
 				players++;
 			j++;
 		}
@@ -90,9 +92,9 @@ static int	ft_is_present_player_and_unique(char **map)
 	return (players == 1);
 }
 
-int ft_check_map(char *file, int fd)
+int	ft_check_map(char *file, int fd)
 {
-	char **map;
+	char	**map;
 
 	map = ft_get_map(file, fd);
 	if (!map)
@@ -100,12 +102,14 @@ int ft_check_map(char *file, int fd)
 	if (!ft_valid_map_characters(map))
 	{
 		ft_free_ptr(&map);
-		return (ft_err_message("Error\n", "Invalid map character or an empty line."), 0);
+		return (ft_err_message("Error\n",
+				"Invalid map character or an empty line."), 0);
 	}
 	if (!ft_is_present_player_and_unique(map))
 	{
 		ft_free_ptr(&map);
-		return (ft_err_message("Error\n", "Either more than 1 player or none in the map."), 0);
+		return (ft_err_message("Error\n",
+				"Either more than 1 player or none in the map."), 0);
 	}
 	if (!ft_is_map_closed(map))
 	{

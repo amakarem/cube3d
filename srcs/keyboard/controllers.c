@@ -53,11 +53,11 @@ int	ft_keyup(int key, void *param)
 		ft_destroy(data);
 	if (key == W)
 		data->keyboard.w_down = false;
-    else if (key == A)
+	else if (key == A)
 		data->keyboard.a_down = false;
-    else if (key == S)
+	else if (key == S)
 		data->keyboard.s_down = false;
-    else if (key == D)
+	else if (key == D)
 		data->keyboard.d_down = false;
 	else if (key == LEFT)
 		data->player.angle = -M_PI_2;
@@ -71,13 +71,13 @@ int	ft_keydown(int key, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-    if (key == W)
+	if (key == W)
 		data->keyboard.w_down = true;
-    else if (key == A)
+	else if (key == A)
 		data->keyboard.a_down = true;
-    else if (key == S)
+	else if (key == S)
 		data->keyboard.s_down = true;
-    else if (key == D)
+	else if (key == D)
 		data->keyboard.d_down = true;
 	return (0);
 }

@@ -12,10 +12,10 @@
 
 #include "cub3D.h"
 
-int ft_wnd_resize(t_data **data, int delta_x, int delta_y)
+int	ft_wnd_resize(t_data **data, int delta_x, int delta_y)
 {
-    (void)data;
-    (void)delta_x;
-    (void)delta_y;
-    return (1);
+	(void)data;
+	(void)delta_x;
+	(void)delta_y;
+	return (1);
 }

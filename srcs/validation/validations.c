@@ -19,8 +19,8 @@ static int	ft_check_textures_and_colors(t_validation *checks, char *line)
 	if (!line || !*line)
 		return (1);
 	if (checks->map_started && !checks->tex_and_cols)
-		return (ft_err_message("Error\n", \
-			"Map started before textures and colors were parsed!"), 0);
+		return (ft_err_message("Error\n",
+				"Map started before textures and colors were parsed!"), 0);
 	split = ft_split(line, ' ');
 	if (!split)
 		return (0);

@@ -12,8 +12,8 @@
 
 #include "cub3D.h"
 
-int ft_raycast(t_data **data)
+int	ft_raycast(t_data **data)
 {
 	(void)data;
-    return (1);
+	return (1);
 }

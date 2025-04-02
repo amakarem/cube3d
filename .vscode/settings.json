@@ -3,6 +3,7 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "limits": "c"
     }
 }

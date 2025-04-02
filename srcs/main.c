@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 20:05:50 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/02 13:06:36 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	ft_mlx_hooks(t_data *data)
 
 void	ft_print_map(char **map)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (map[i])
 	{
 		printf("map[%i] = %s\n", i, map[i]);
@@ -40,7 +42,7 @@ void	ft_print_map(char **map)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 
@@ -54,7 +56,6 @@ int main(int argc, char **argv)
 		ft_cleardata(&data);
 		ft_err_message_exit("Initialization failed!", NULL);
 	}
-	// ft_print_map(data->map);
 	if (!ft_raycast(&data))
 	{
 		ft_cleardata(&data);
