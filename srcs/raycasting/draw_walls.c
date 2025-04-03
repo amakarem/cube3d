@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 04:11:37 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 04:26:24 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ float   ft_dist_vertical(t_data *data, t_player p, float angle)
     int     y_line;
     int     xa;
     int     ya;
-    float   dist;
 
     ft_get_y_frame(p, &y_line, &ya);
     x_line = p.x + (p.y - y_line) / tan(angle);
@@ -46,7 +45,6 @@ float   ft_dist_horizontal(t_data *data, t_player p, float angle)
     int     y_line;
     int     xa;
     int     ya;
-    float   dist;
 
     ft_get_x_frame(p, &x_line, &xa);
     y_line = p.y + (p.x - x_line) * tan(angle);
