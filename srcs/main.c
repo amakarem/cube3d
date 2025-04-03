@@ -14,9 +14,19 @@
 
 int	ft_destroy(t_data *data)
 {
-	if (data)
-		ft_cleardata(&data);
+	ft_cleardata(&data);
 	exit(0);
+}
+
+int ft_game_loop(t_data *data)
+{
+	if (!ft_raycast(data))
+        {
+               ft_cleardata(&data);
+	       ft_err_message_exit("Raycasting failed!", NULL);
+	       exit(1);
+        }
+        return (0);
 }
 
 void	ft_mlx_hooks(t_data *data)
@@ -27,6 +37,8 @@ void	ft_mlx_hooks(t_data *data)
 	mlx_hook(data->mlx_win, 4, 1L << 2, ft_mouse_down, data);
 	mlx_hook(data->mlx_win, 5, 1L << 3, ft_mouse_up, data);
 	mlx_hook(data->mlx_win, 6, 1L << 6, ft_mousemove, data);
+	mlx_loop_hook(data->mlx_ptr, ft_game_loop, data);
+	mlx_loop(data->mlx_ptr);
 }
 
 void	ft_print_map(char **map)
@@ -55,13 +67,6 @@ int	main(int argc, char **argv)
 		ft_cleardata(&data);
 		ft_err_message_exit("Initialization failed!", NULL);
 	}
-	if (!ft_raycast(&data))
-	{
-		ft_cleardata(&data);
-		ft_err_message_exit("Raycasting failed!", NULL);
-	}
-	printf("%p und %p\n", data->buffer, data->buffer->img);
 	ft_mlx_hooks(data);
-	mlx_loop(data->mlx_ptr);
 	return (ft_cleardata(&data), 0);
 }
