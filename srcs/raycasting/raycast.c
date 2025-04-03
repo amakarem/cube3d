@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:51:40 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 04:57:43 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 05:02:30 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	ft_raycast(t_data **data)
     
     ft_clean_window(*data);
     x = 0;
-    incr = FOV / 2 - ((FOV / 2) - (FOV / (*data)->wnd_w - 1));
-    incr *= (180 / M_PI);
+    incr = (FOV / ((*data)->wnd_w - 1)) * (180 / M_PI);
     while (x < (*data)->wnd_w)
     {
         section[x] = incr * x - (*data)->player.angle;
