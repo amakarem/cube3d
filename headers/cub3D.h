@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/02 13:00:45 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 01:56:58 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define WIDTH 1200
 # define HEIGHT 800
-
+# define FOV M_PI_3
 # define BLOCK_SIZE 64
 # define ESC 53
 # define CTRL 256
@@ -106,6 +106,7 @@ typedef struct s_data
 	t_img		*buffer;
 	int			wnd_w;
 	int			wnd_h;
+    float       proj_dist;
 	char		**map;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
@@ -149,10 +150,10 @@ int				ft_mouse_up(int button, int x, int y, void *param);
 int				ft_mouse_down(int button, int x, int y, void *param);
 
 // actions
-void			ft_action_W(t_data *data);
-void			ft_action_A(t_data *data);
-void			ft_action_S(t_data *data);
-void			ft_action_D(t_data *data);
+void			ft_action_w(t_data *data);
+void			ft_action_a(t_data *data);
+void			ft_action_s(t_data *data);
+void			ft_action_d(t_data *data);
 int				ft_wnd_resize(t_data **data, int delta_x, int delta_y);
 
 // utils
@@ -176,5 +177,7 @@ void			ft_cleardata(t_data **data);
 
 // raycasting
 int				ft_raycast(t_data **data);
+void    ft_clean_window(t_data *data);
+void    ft_draw_wall_slice(t_data *data, t_img *img, float *section, int x);
 
 #endif

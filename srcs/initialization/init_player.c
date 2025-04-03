@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 20:07:05 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 01:13:05 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void	ft_init_player(t_data **data, char **map)
 	orientation = ft_get_position_and_direction(map, &(*data)->player.x,
 			&(*data)->player.y);
 	if (orientation == 'N')
-		(*data)->player.angle = 0;
-	if (orientation == 'S')
-		(*data)->player.angle = M_PI;
-	if (orientation == 'E')
-		(*data)->player.angle = M_PI_2;
-	if (orientation == 'W')
 		(*data)->player.angle = -M_PI_2;
+	if (orientation == 'S')
+		(*data)->player.angle = M_PI_2;
+	if (orientation == 'E')
+		(*data)->player.angle = 0;
+	if (orientation == 'W')
+		(*data)->player.angle = M_PI;
+    (*data)->proj_dist = ((*data)->wnd_w / 2) / tan(FOV / 2);
 }
 
 void	ft_init_keyboard(t_data **data)
