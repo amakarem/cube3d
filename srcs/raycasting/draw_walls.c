@@ -13,6 +13,7 @@
 #include "cub3D.h"
 
 // https://permadi.com/1996/05/ray-casting-tutorial-7/
+// Finding the nearest horizontal wall
 // x_line: x coordinates of vertical grid lines
 // xa: x distance between 2 adjacent ray intersections with y_lines
 float   ft_dist_vertical(t_data *data, t_player p, float angle)
@@ -37,6 +38,7 @@ float   ft_dist_vertical(t_data *data, t_player p, float angle)
 }
 
 // https://permadi.com/1996/05/ray-casting-tutorial-7/
+// Finding the nearest vertical wall
 // y_line: y coordinates of horizontal grid lines
 // ya: y distance between 2 adjacent ray intersections with x_lines
 float   ft_dist_horizontal(t_data *data, t_player p, float angle)
