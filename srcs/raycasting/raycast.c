@@ -12,6 +12,19 @@
 
 #include "cub3D.h"
 
+void ft_update_players_pos_and_dir(t_data **data)
+{
+	if ((*data)->keyboard.w_down)
+	{
+(*data)->player.x += 
+
+        x++;
+	}
+
+
+ 
+}
+
 // incr = (30) - 29.xxx in rad
 // (30) to (-30) => ((FOV / 2) - x * (FOV / (*data)->wnd_w - 1))
 int	ft_raycast(t_data **data)
@@ -22,6 +35,7 @@ int	ft_raycast(t_data **data)
     float   section[(*data)->wnd_w];
     
     ft_clean_window(*data);
+    ft_update_players_pos_and_dir(data);
     x = 0;
     fov_rad_2 = FOV * (180 / M_PI) / 2;
     incr = (FOV / ((*data)->wnd_w - 1)) * (180 / M_PI);
