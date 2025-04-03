@@ -1,9 +1,10 @@
 {
     "files.associations": {
-        "array": "c",
-        "string": "c",
-        "string_view": "c",
-        "cub3d.h": "c",
-        "limits": "c"
-    }
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"cub3d.h": "c",
+		"limits": "c",
+		"vector": "c"
+	}
 }

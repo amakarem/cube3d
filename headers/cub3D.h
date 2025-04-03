@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 01:56:58 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 22:50:37 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1200
+# define WIDTH 800
 # define HEIGHT 800
-# define FOV M_PI_3
+# define M_3_PI_2 4.7123889804
+# define FOV 60
 # define BLOCK_SIZE 64
 # define ESC 53
 # define CTRL 256
@@ -42,6 +43,7 @@
 
 # define P 35
 # define M 46
+# define SPEED 3.0f
 
 typedef struct s_validation
 {
@@ -108,6 +110,7 @@ typedef struct s_data
 	int			wnd_h;
     float       proj_dist;
 	char		**map;
+	int			map_height;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	t_texture	*north;
@@ -178,6 +181,11 @@ void			ft_cleardata(t_data **data);
 // raycasting
 int				ft_raycast(t_data **data);
 void    ft_clean_window(t_data *data);
-void    ft_draw_wall_slice(t_data *data, t_img *img, float *section, int x);
+void    ft_draw_wall_slice(t_data *data, t_img **img, float *section, int x);
+void    ft_get_x_frame(t_player p, float *x_line, int *xa, float angle);
 
+void    ft_get_y_frame(t_player p, float *y_line, int *ya, float angle);
+float   ft_absf(float val);
+int ft_is_colission(float x, float y, char **map, int h);
+void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
 #endif

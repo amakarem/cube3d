@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 20:04:13 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 22:57:31 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_mouse_down(int button, int x, int y, void *param)
 {
 	t_data	*data;
 
+	(void)x;
+	(void)y;
 	data = (t_data *)param;
 	if (button == 1)
 		data->mouse.mouse_down = true;
@@ -68,16 +70,21 @@ int	ft_keyup(int key, void *param)
 
 int	ft_keydown(int key, void *param)
 {
-	t_data	*data;
+	t_data	**data;
 
-	data = (t_data *)param;
+	data = (t_data **)&param;
 	if (key == W)
-		data->keyboard.w_down = true;
+	{
+		printf("w was down\n");
+		(*data)->keyboard.w_down = true;
+		(*data)->player.x += cos((*data)->player.angle) * SPEED;
+		(*data)->player.y += sin((*data)->player.angle) * SPEED;
+	}
 	else if (key == A)
-		data->keyboard.a_down = true;
+		(*data)->keyboard.a_down = true;
 	else if (key == S)
-		data->keyboard.s_down = true;
+		(*data)->keyboard.s_down = true;
 	else if (key == D)
-		data->keyboard.d_down = true;
+		(*data)->keyboard.d_down = true;
 	return (0);
 }

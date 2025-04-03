@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 01:09:30 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/03 21:33:30 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_new_window_and_image(t_data **data)
 			&img->endian);
 	if (!img->data)
 		return (0);
+	(*data)->wnd_w = w;
+	(*data)->wnd_h = h;
 	return (1);
 }
 
@@ -76,13 +78,18 @@ static int	ft_create_textures(t_data **data)
 
 int	ft_create_map(t_data **data, char *file)
 {
-	int	fd;
+	int		fd;
+	size_t	i;
 
 	if (ft_open_file(file, &fd) == -1)
 		return (0);
 	(*data)->map = ft_get_map(file, fd);
 	if (!(*data)->map)
 		return (0);
+	i = 0;
+	while ((*data)->map[i])
+		i++;
+	(*data)->map_height = i;
 	return (1);
 }
 
