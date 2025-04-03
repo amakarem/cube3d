@@ -51,7 +51,7 @@ void	ft_init_player(t_data **data, char **map)
 		(*data)->player.angle = 0;
 	if (orientation == 'W')
 		(*data)->player.angle = M_PI;
-    (*data)->proj_dist = ((*data)->wnd_w / 2) / tan(FOV / 2);
+    (*data)->proj_dist = ((*data)->wnd_w / 2) / tan((FOV / 2) * M_PI / 180);
 }
 
 void	ft_init_keyboard(t_data **data)
