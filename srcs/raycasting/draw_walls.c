@@ -72,6 +72,21 @@ float   ft_raytrace(t_data *data, t_player player, float angle)
     return (fminf(dist_vertical, dist_horizontal) * cos(angle));
 }
 
+void ft_draw_floor_slice(t_data *data, t_img *img, x, y_end)
+{
+    while (y_end < data->wnd_h)
+        ft_putpxl(img, x, y_end++, data->floor_col);
+}
+
+void ft_draw_ceiling_slice(t_data *data, t_img *img, x, y_start)
+{
+    size_t y;
+
+    y = 0;
+    while (y < y_start)
+        ft_putpxl(img, x, y++, data->ceiling_col);
+}
+
 void    ft_draw_wall_slice(t_data *data, t_img *img, float *section, int x)
 {
     int     y_end;
@@ -83,6 +98,8 @@ void    ft_draw_wall_slice(t_data *data, t_img *img, float *section, int x)
     wall_height = (BLOCK_SIZE / distance) * data->proj_dist;
     y_start = (data->wnd_h - wall_height) / 2;
     y_end = y_start + wall_height;
+    ft_draw_floor_slice(data, data->buffer, x, y_end);
+    ft_draw_ceiling_slice(data, data->buffer, x, y_start);
     while (y_start < y_end)
         ft_putpxl(img, x, y_start++, 0x0000ff);
 }
