@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/04 15:01:28 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 13:52:28 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	ft_get_position_and_direction(char **map, float *px, float *py)
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
 			{
-				*px = x * BLOCK_SIZE + (BLOCK_SIZE / 2);
-				*py = y * BLOCK_SIZE + (BLOCK_SIZE / 2);
+				*px = x + 0.5f;
+				*py = y + 0.5f;
 				return (map[y][x]);
 			}
 			x++;
@@ -37,21 +37,45 @@ char	ft_get_position_and_direction(char **map, float *px, float *py)
 	return ('N');
 }
 
+void ft_get_plane_vector(float *planeX, float *planeY, t_player player)
+{
+    float   fov_radiant;
+    float   plane_length;
+
+    fov_radiant = FOV * M_PI / 180.0f;
+    plane_length = tanf(fov_radiant / 2.0f);
+    *planeX = -player.dirY * plane_length;
+    *planeY = player.dirX * plane_length;
+}
+
 void	ft_init_player(t_data **data, char **map)
 {
 	char	orientation;
 
-	orientation = ft_get_position_and_direction(map, &(*data)->player.x,
-			&(*data)->player.y);
+	orientation = ft_get_position_and_direction(map, &(*data)->player.posX,
+			&(*data)->player.posY);
 	if (orientation == 'N')
-		(*data)->player.angle = M_PI_2;
-	if (orientation == 'S')
-		(*data)->player.angle = -M_PI_2;
-	if (orientation == 'E')
-		(*data)->player.angle = 0;
-	if (orientation == 'W')
-		(*data)->player.angle = M_PI;
-    (*data)->proj_dist = ((*data)->wnd_w / 2) / tan((FOV / 2) * M_PI / 180);
+    {
+        (*data)->player.dirX = 0;
+        (*data)->player.dirY = 1;
+    }
+	else if (orientation == 'S')
+    {
+        (*data)->player.dirX = 0;
+        (*data)->player.dirY = -1;
+    }
+	else if (orientation == 'E')
+    {
+        (*data)->player.dirX = 1;
+        (*data)->player.dirY = 0;
+    }
+	else if (orientation == 'W')
+    {
+        (*data)->player.dirX = -1;
+        (*data)->player.dirY = 0;
+    }
+    ft_get_plane_vector(&(*data)->player.planeX, &(*data)->player.planeY, (*data)->player);
+    // (*data)->proj_dist = ((*data)->wnd_w / 2) / tan((FOV / 2) * M_PI / 180);
 }
 
 void	ft_init_keyboard(t_data **data)
