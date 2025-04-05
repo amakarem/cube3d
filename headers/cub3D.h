@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 15:22:27 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 20:20:21 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,6 @@ typedef struct s_rayhit
     float		distance;
 }				t_rayhit;
 
-typedef struct s_wall_data
-{
-    float		wall_height;
-    int			y_start;
-    int			y_end;
-}				t_wall_data;
-
 typedef struct s_mouse
 {
 	bool		mouse_down;
@@ -134,6 +127,7 @@ typedef struct s_player
     float       dirY;
     float       planeX;
     float       planeY;
+    float       plane_length;
 }				t_player;
 
 typedef struct s_data
@@ -143,7 +137,6 @@ typedef struct s_data
 	t_img		*buffer;
 	int			wnd_w;
 	int			wnd_h;
-    float       proj_dist;
 	char		**map;
 	int			map_height;
 	uint32_t	floor_color;
@@ -169,7 +162,7 @@ bool			ft_is_line_of_map(char *line);
 // initialization
 void	        ft_init_null(t_data **data);
 void			ft_init_keyboard(t_data **data);
-void			ft_init_player(t_data **data, char **map);
+void			ft_init_player(t_player *p, char **map);
 int				ft_initialization(t_data **data, char *file);
 
 // parsing
@@ -187,13 +180,6 @@ int				ft_keyup(int key, void *param);
 int				ft_mousemove(int x, int y, void *param);
 int				ft_mouse_up(int button, int x, int y, void *param);
 int				ft_mouse_down(int button, int x, int y, void *param);
-
-// actions
-void			ft_action_w(t_data *data);
-void			ft_action_a(t_data *data);
-void			ft_action_s(t_data *data);
-void			ft_action_d(t_data *data);
-int				ft_wnd_resize(t_data **data, int delta_x, int delta_y);
 
 // utils
 char			*ft_trim_newlines(char *line);
@@ -215,11 +201,14 @@ char			**ft_get_map(char *file, int fd);
 void			ft_cleardata(t_data **data);
 
 // raycasting
-int				ft_raycast(t_data **data);
+int				ft_raycast(t_data *data);
 void    ft_clean_window(t_data *data);
 void    ft_draw_wall_slice(t_data *data, t_img **img, float **rayDir, int x);
 float   ft_absf(float val);
 void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
-void ft_update_players_pos_and_dir(t_data **data, t_player *player);
+t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir);
+uint32_t    ft_get_tex_col(t_data *data, t_rayhit rayhit, int x, int y);
+void ft_move_player(t_data *data, t_player *p);
+void    ft_get_dda(t_dda *dda, float *rayDir, t_player player);
 
 #endif

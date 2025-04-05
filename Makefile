@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/05 15:19:05 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/05 20:14:50 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ endif
 # ADD here folder names with (PARSING, CLEARING, UTILS, ...), that hold appropriate files for a clean project structure
 CLEARING = cleaners.c
 INITIALIZATION = heap_allocations.c init_player.c init_utils.c
-KEYBOARD = actions.c controllers.c wnd_resize.c
+KEYBOARD = controllers.c wnd_resize.c
 MESSAGING = err_message.c
 PARSING = parser.c get_textures.c get_colors.c
-RAYCASTING = raycast.c draw_walls.c draw_walls_utils.c buffer.c
+RAYCASTING = raycast.c draw_walls.c draw_walls_utils.c buffer.c move_player.c
 UTILS = utils_validating.c utils_validating2.c utils_staff.c numbers.c
 VALIDATION =  validations.c check_textures.c check_colors.c check_map.c
 

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:16:28 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 19:00:48 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 17:46:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,10 @@ int	ft_validate_cub_file(char *file)
 	char	*format;
 
 	if (ft_strlen(file) < 5)
-	{
-		write(STDERR_FILENO, "Error\n", 6);
-		return (ft_err_message("Invalid .cub filename", NULL), 0);
-	}
+		return (ft_err_message("Error\n", "Invalid .cub filename"), 0);
 	format = file + (ft_strlen(file) - 4);
 	if (ft_strncmp(format, ".cub", 4) != 0)
-	{
-		write(STDERR_FILENO, "Error\n", 6);
-		return (ft_err_message("Invalid .cub file extension", NULL), 0);
-	}
+		return (ft_err_message("Error\n", "Invalid .cub file extension"), 0);
 	if (ft_open_file(file, &fd) == -1)
 		return (0);
 	if (!ft_validate_cub_format(file, fd))

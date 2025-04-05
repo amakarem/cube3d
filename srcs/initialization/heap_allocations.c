@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/04 15:19:32 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 19:06:57 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ int	ft_initialization(t_data **data, char *file)
 	if (!ft_create_map(data, file))
 		return (0);
 	ft_init_keyboard(data);
-	ft_init_player(data, (*data)->map);
+	ft_init_player(&(*data)->player, (*data)->map);
 	return (1);
 }

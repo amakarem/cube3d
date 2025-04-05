@@ -6,27 +6,28 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 22:24:18 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 18:45:37 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	ft_destroy(t_data *data)
+int ft_destroy(t_data *data)
 {
-	ft_cleardata(&data);
-	exit(0);
+    ft_cleardata(&data);
+    exit(0);
 }
 
 int ft_game_loop(t_data *data)
 {
-	if (!ft_raycast(data))
-        {
-               ft_cleardata(&data);
-	       ft_err_message_exit("Raycasting failed!", NULL);
-	       exit(1);
-        }
-        return (0);
+    ft_clean_window(data);
+    ft_move_player(data, &data->player);
+    if (!ft_raycast(data))
+    {
+        ft_cleardata(&data);
+        ft_err_message_exit("Raycasting failed!", NULL);
+    }
+    return (0);
 }
 
 void	ft_mlx_hooks(t_data *data)
@@ -39,18 +40,6 @@ void	ft_mlx_hooks(t_data *data)
 	mlx_hook(data->mlx_win, 6, 1L << 6, ft_mousemove, data);
 	mlx_loop_hook(data->mlx_ptr, ft_game_loop, data);
 	mlx_loop(data->mlx_ptr);
-}
-
-void	ft_print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("map[%i] = %s\n", i, map[i]);
-		i++;
-	}
 }
 
 int	main(int argc, char **argv)
