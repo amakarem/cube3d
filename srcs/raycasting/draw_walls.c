@@ -6,12 +6,21 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 20:07:32 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 20:43:10 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// casting a ray from player in rayDirection (x/y).
+// using DDA for incrementing the current x/y position.
+// looking for wall colissions on either a horizontal or vertical grid line.
+// sideDist: distance from current position to next x/y grid line.
+// mapX/Y: current grid cell being checked for wall hit.
+// deltaDist: distance the ray travels to go from one x/y-side to the next.
+// returns information about the wall distance
+// (perpendicular to the camera plane) and the wall side (N, S, E, W).
+// Raycasting Tutorial on: https://lodev.org/cgtutor/raycasting.html
 t_rayhit   ft_raytrace(t_data *data, t_player player, float *rayDir)
 {
     int         side;
@@ -51,6 +60,7 @@ void ft_draw_floor_slice(t_data *data, t_img **img, int x, int y_end)
         ft_putpxl(img, x, y_end++, data->floor_color);
 }
 
+// Raycasting Tutorial on: https://lodev.org/cgtutor/raycasting.html
 void    ft_draw_wall_slice(t_data *data, t_img **img, float **rayDir, int x)
 {
     int         y_start;

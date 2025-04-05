@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:42:46 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 18:52:17 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 20:43:01 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ float   ft_absf(float val)
     return (val * (val >= 0) - val * (val < 0));
 }
 
+// initializes DDA values based on player position and ray direction.
+// sets starting grid cell (mapX/Y), step direction (stepX/Y),
+// initial side distances (sideDistX/Y), and delta distances (deltaDistX/Y).
+// Raycasting Tutorial on: https://lodev.org/cgtutor/raycasting.html
 void    ft_get_dda(t_dda *dda, float *rayDir, t_player player)
 {
     dda->mapX = (int)player.posX;
@@ -45,6 +49,12 @@ void    ft_get_dda(t_dda *dda, float *rayDir, t_player player)
     }
 }
 
+// calculates the ray hit result after DDA.
+// checks for the wall side (N, S, E, W) and perpendicular wall distance.
+// side: 0: vertical wall was hit. 1: horizontal wall was hit.
+// subtract deltaDist to get the exact perpendicular distance to the wall
+// (sideDist is one step too far after DDA finished)
+// Raycasting Tutorial on: https://lodev.org/cgtutor/raycasting.html
 t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir)
 {
     t_rayhit    rayhit;
@@ -69,6 +79,7 @@ t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir)
     return (rayhit);
 }
 
+// getting the texture color from the selected texture
 uint32_t    ft_get_tex_col(t_data *data, t_rayhit rayhit, int x, int y)
 {
     t_texture   *tex;
