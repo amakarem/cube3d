@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 22:50:37 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/04 19:33:24 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@
 
 # define P 35
 # define M 46
+// SPEED [3.0f pixels / frame]
 # define SPEED 3.0f
+// ROTATION_SPEED [0.07f radiants / pixels difference]
+# define ROTATION_SPEED 0.006f
 
 typedef struct s_validation
 {
@@ -57,6 +60,20 @@ typedef struct s_validation
 	bool		map_started;
 	bool		validated;
 }				t_validation;
+
+typedef struct s_rayhit
+{
+    char		side;
+    float		distance;
+    int         y_start;
+}				t_rayhit;
+
+typedef struct s_wall_data
+{
+    float		wall_height;
+    int			y_start;
+    int			y_end;
+}				t_wall_data;
 
 typedef struct s_mouse
 {
@@ -73,6 +90,8 @@ typedef struct s_img
 	int			linelen;
 	int			bpp;
 	int			endian;
+    int         width;
+    int         height;
 }				t_img;
 
 typedef struct s_texture
@@ -132,6 +151,7 @@ int				ft_check_map(char *file, int fd);
 bool			ft_is_line_of_map(char *line);
 
 // initialization
+void	        ft_init_null(t_data **data);
 void			ft_init_keyboard(t_data **data);
 void			ft_init_player(t_data **data, char **map);
 int				ft_initialization(t_data **data, char *file);
@@ -183,9 +203,14 @@ int				ft_raycast(t_data **data);
 void    ft_clean_window(t_data *data);
 void    ft_draw_wall_slice(t_data *data, t_img **img, float *section, int x);
 void    ft_get_x_frame(t_player p, float *x_line, int *xa, float angle);
-
 void    ft_get_y_frame(t_player p, float *y_line, int *ya, float angle);
 float   ft_absf(float val);
 int ft_is_colission(float x, float y, char **map, int h);
 void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
+void ft_update_players_pos_and_dir(t_data **data, float angle);
+float	ft_x_dir(float dist, float angle);
+float	ft_y_dir(float dist, float angle);
+float   ft_dist_vertical(t_data *data, t_player p, float angle);
+float   ft_dist_horizontal(t_data *data, t_player p, float angle);
+
 #endif

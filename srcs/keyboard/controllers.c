@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 22:57:31 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/04 16:30:46 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	ft_mousemove(int x, int y, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	data->mouse.mouse_x = x;
-	data->mouse.mouse_y = y;
+    if (x != data->wnd_w / 2)
+        data->player.angle += ROTATION_SPEED * (x - (data->wnd_w / 2));
 	return (0);
 }
 
@@ -62,9 +62,13 @@ int	ft_keyup(int key, void *param)
 	else if (key == D)
 		data->keyboard.d_down = false;
 	else if (key == LEFT)
-		data->player.angle = -M_PI_2;
+		data->player.angle = M_PI;
 	else if (key == RIGHT)
+		data->player.angle = 0;
+    else if (key == UP)
 		data->player.angle = M_PI_2;
+	else if (key == DOWN)
+		data->player.angle = M_3_PI_2;
 	return (0);
 }
 
@@ -74,12 +78,7 @@ int	ft_keydown(int key, void *param)
 
 	data = (t_data **)&param;
 	if (key == W)
-	{
-		printf("w was down\n");
 		(*data)->keyboard.w_down = true;
-		(*data)->player.x += cos((*data)->player.angle) * SPEED;
-		(*data)->player.y += sin((*data)->player.angle) * SPEED;
-	}
 	else if (key == A)
 		(*data)->keyboard.a_down = true;
 	else if (key == S)

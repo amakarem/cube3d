@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 19:21:58 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:01:28 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	ft_get_position_and_direction(char **map, float *px, float *py)
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
 			{
-				*px = x * BLOCK_SIZE;
-				*py = y * BLOCK_SIZE;
+				*px = x * BLOCK_SIZE + (BLOCK_SIZE / 2);
+				*py = y * BLOCK_SIZE + (BLOCK_SIZE / 2);
 				return (map[y][x]);
 			}
 			x++;

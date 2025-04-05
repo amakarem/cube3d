@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:37 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/03 22:07:43 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:21:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void    ft_putpxl(t_img **img, int x, int y, uint32_t color)
 {
     int offset;
-
-	printf("putpxl: x = %i, y = %i\n", x, y);
-
+    
+    if (!img || !*img || x < 0 || y < 0 || x >= (*img)->width || y >= (*img)->height)
+        return ;
     offset = x * ((*img)->bpp / 8) + y * (*img)->linelen;
     *((uint32_t *)((*img)->data + offset)) = color;
 }
