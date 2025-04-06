@@ -6,13 +6,13 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/01 18:20:33 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 13:03:50 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	ft_get_data(t_data **data, int fd)
+static int	ft_get_data(t_data *data, int fd)
 {
 	char	*line;
 	char	**split;
@@ -32,7 +32,7 @@ static int	ft_get_data(t_data **data, int fd)
 	return (1);
 }
 
-int	ft_parse(t_data **data, char *file)
+int	ft_parse(t_data *data, char *file)
 {
 	int	fd;
 

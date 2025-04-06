@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 19:06:57 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 13:41:43 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,24 @@ int    ft_init_image(t_data **data)
     return (1);     
 }
 
-static int	ft_create_textures(t_data **data)
+// sets everything to NULL -> in case something can not allocate,
+// the cleardata function
+// just frees all available heap allocations and it
+// doesn't occur a bad access error.
+void	ft_init_null(t_data *data)
 {
-	(*data)->north = malloc(sizeof(t_texture));
-	(*data)->south = malloc(sizeof(t_texture));
-	(*data)->east = malloc(sizeof(t_texture));
-	(*data)->west = malloc(sizeof(t_texture));
-	if (!(*data)->east || !(*data)->west || !(*data)->north || !(*data)->south)
-		return (0);
-	(*data)->north->img = NULL;
-	(*data)->south->img = NULL;
-	(*data)->east->img = NULL;
-	(*data)->west->img = NULL;
-	return (1);
+	data->mlx_ptr = NULL;
+	data->mlx_win = NULL;
+	data->buffer = NULL;
+	data->map = NULL;
+	data->wnd_h = 0;
+	data->wnd_w = 0;
+	data->floor_color = 0;
+	data->ceiling_color = 0;
+	data->tex[NORTH].img = NULL;
+    data->tex[SOUTH].img = NULL;
+    data->tex[EAST].img = NULL;
+    data->tex[WEST].img = NULL;
 }
 
 int	ft_create_map(t_data **data, char *file)
@@ -97,8 +102,6 @@ int	ft_initialization(t_data **data, char *file)
 	if (!(*data)->mlx_ptr)
 		return (0);
 	if (!ft_init_window(data) || !ft_init_image(data))
-		return (0);
-	if (!ft_create_textures(data))
 		return (0);
 	if (!ft_create_map(data, file))
 		return (0);

@@ -6,13 +6,14 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 20:20:21 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 14:34:41 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "structs.h"
 # include "libft.h"
 # include "mlx.h"
 # include <fcntl.h>
@@ -48,87 +49,13 @@
 // ROTATION_SPEED [0.07f radiants / pixels difference]
 # define ROTATION_SPEED 0.006f
 
-typedef struct s_validation
+typedef enum    s_tex_names
 {
-	bool		north_tex;
-	bool		south_tex;
-	bool		east_tex;
-	bool		west_tex;
-	bool		floor;
-	bool		ceiling;
-	bool		tex_and_cols;
-	bool		map_started;
-	bool		validated;
-}				t_validation;
-
-typedef struct s_rayhit
-{
-    char		side;
-    int         NS_EW;
-    float		distance;
-}				t_rayhit;
-
-typedef struct s_mouse
-{
-	bool		mouse_down;
-	bool		ctrl_down;
-	int			mouse_x;
-	int			mouse_y;
-}				t_mouse;
-
-typedef struct s_img
-{
-	void		*img;
-	char		*data;
-	int			linelen;
-	int			bpp;
-	int			endian;
-    int         width;
-    int         height;
-}				t_img;
-
-typedef struct s_texture
-{
-	void		*img;
-	char		*data;
-	int			linelen;
-	int			bpp;
-	int			endian;
-	int			width;
-	int			height;
-}				t_texture;
-
-typedef struct s_keyboard
-{
-	bool		w_down;
-	bool		a_down;
-	bool		s_down;
-	bool		d_down;
-}				t_keyboard;
-
-typedef struct s_dda
-{
-    int     mapX;
-    int     mapY;
-    int     stepX;
-    int     stepY;
-    float   sideDistX;
-    float   sideDistY;
-    float   deltaDistX;
-    float   deltaDistY;
-    float   perpWallDist;
-}           t_dda;
-
-typedef struct s_player
-{
-	float		posX;
-	float		posY;
-    float       dirX;
-    float       dirY;
-    float       planeX;
-    float       planeY;
-    float       plane_length;
-}				t_player;
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST
+}   t_tex_names;
 
 typedef struct s_data
 {
@@ -141,10 +68,7 @@ typedef struct s_data
 	int			map_height;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-	t_texture	*north;
-	t_texture	*south;
-	t_texture	*east;
-	t_texture	*west;
+    t_texture   tex[4];
 	t_player	player;
 	t_keyboard	keyboard;
 	t_mouse		mouse;
@@ -160,14 +84,13 @@ int				ft_check_map(char *file, int fd);
 bool			ft_is_line_of_map(char *line);
 
 // initialization
-void	        ft_init_null(t_data **data);
 void			ft_init_keyboard(t_data **data);
 void			ft_init_player(t_player *p, char **map);
 int				ft_initialization(t_data **data, char *file);
 
 // parsing
-int				ft_parse(t_data **data, char *file);
-int				ft_get_textures(t_data **data, char **split);
+int				ft_parse(t_data *data, char *file);
+int				ft_get_textures(t_data *data, char **split);
 int				ft_get_colors(t_data **data, char **split);
 
 // messaging
@@ -184,7 +107,6 @@ int				ft_mouse_down(int button, int x, int y, void *param);
 // utils
 char			*ft_trim_newlines(char *line);
 size_t			ft_ptr_len(char **ptr);
-int				ft_hex_to_int(const char *str);
 void			ft_free_ptr(char ***ptr);
 int				ft_valid_numbers(char *s);
 int				ft_is_wall_blocked(char **map, int y, int x);
@@ -203,12 +125,13 @@ void			ft_cleardata(t_data **data);
 // raycasting
 int				ft_raycast(t_data *data);
 void    ft_clean_window(t_data *data);
-void    ft_draw_wall_slice(t_data *data, t_img **img, float **rayDir, int x);
+void    ft_draw_slice(t_data *data, t_img **img, float **rayDir, int x);
 float   ft_absf(float val);
 void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
-t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir);
-uint32_t    ft_get_tex_col(t_data *data, t_rayhit rayhit, int x, int y);
+t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir, t_player player);
 void ft_move_player(t_data *data, t_player *p);
 void    ft_get_dda(t_dda *dda, float *rayDir, t_player player);
+void    ft_rotate(t_player *p, float angle);
+void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *rayDir);
 
 #endif

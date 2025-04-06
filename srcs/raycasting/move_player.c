@@ -6,21 +6,26 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:32:23 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 20:16:52 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/05 21:05:45 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 // mouse x-orientation
-// rotation matrix
-// {{cos -sin}, {sin cos}}
+// rotation matrix: {{cos -sin}, {sin cos}}
 // applied to player dir and camera plane (vectors)
-void    ft_rotate(char **map, t_player *p, float angle)
+void    ft_rotate(t_player *p, float angle)
 {
-    (void)map;
-    (void)p;
-    (void)angle;
+    float   tmp_x;
+    float   tmp_planeX;
+    
+    tmp_x = p->dirX;
+    tmp_planeX = p->planeX;
+    p->dirX = p->dirX * cos(angle) - p->dirY * sin(angle);
+    p->dirY = tmp_x * sin(angle) + p->dirY * cos(angle);
+    p->planeX = p->planeX * cos(angle) - p->planeY * sin(angle);
+    p->planeY = tmp_planeX * sin(angle) + p->planeY * cos(angle);
 }
 
 // checking for wall colissions x/y
@@ -59,6 +64,5 @@ void    ft_translate(char **map, t_player *p, t_keyboard k)
 
 void ft_move_player(t_data *data, t_player *p)
 {
-    // ft_rotate(data->map, p);
     ft_translate(data->map, p, data->keyboard);
 }

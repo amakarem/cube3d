@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 18:45:37 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 13:25:20 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 		ft_err_message_exit("Wrong number of arguments!", NULL);
 	if (!ft_validate_cub_file(argv[1]))
 		ft_err_message_exit("Error\n", ".cub file validation failed!");
-	if (!ft_initialization(&data, argv[1]) || !ft_parse(&data, argv[1]))
+	if (!ft_initialization(&data, argv[1]) || !ft_parse(data, argv[1]))
 	{
 		ft_cleardata(&data);
 		ft_err_message_exit("Initialization failed!", NULL);

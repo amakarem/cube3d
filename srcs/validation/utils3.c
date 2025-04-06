@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   numbers.c                                          :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 11:51:09 by tkeil             #+#    #+#             */
-/*   Updated: 2025/03/28 12:08:12 by tkeil            ###   ########.fr       */
+/*   Created: 2025/04/06 14:29:20 by tkeil             #+#    #+#             */
+/*   Updated: 2025/04/06 14:30:42 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// convert 0xFFFF color values to integers
-int	ft_hex_to_int(const char *str)
+char	*ft_trim_newlines(char *line)
 {
-	int	i;
-	int	sum;
-	int	index;
+	char	*ptr;
 
-	i = 2;
-	sum = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			index = str[i] - '0';
-		else if (str[i] >= 'a' && str[i] <= 'f')
-			index = str[i] - 'a' + 10;
-		else if (str[i] >= 'A' && str[i] <= 'F')
-			index = str[i] - 'A' + 10;
-		else
-			return (-1);
-		sum = sum * 16 + index;
+	if (!line)
+		return (NULL);
+	ptr = ft_strtrim(line, "\n");
+	return (free(line), ptr);
+}
+
+size_t	ft_ptr_len(char **ptr)
+{
+	size_t	i;
+
+	if (!ptr || !*ptr)
+		return (0);
+	i = 0;
+	while (ptr[i])
 		i++;
-	}
-	return (sum);
+	return (i);
 }
