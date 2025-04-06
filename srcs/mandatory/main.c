@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 13:25:20 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 19:38:07 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void	ft_mlx_hooks(t_data *data)
 	mlx_hook(data->mlx_win, 17, 0, ft_destroy, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, ft_keydown, data);
 	mlx_hook(data->mlx_win, 3, 1L << 1, ft_keyup, data);
-	mlx_hook(data->mlx_win, 4, 1L << 2, ft_mouse_down, data);
-	mlx_hook(data->mlx_win, 5, 1L << 3, ft_mouse_up, data);
-	mlx_hook(data->mlx_win, 6, 1L << 6, ft_mousemove, data);
 	mlx_loop_hook(data->mlx_ptr, ft_game_loop, data);
 	mlx_loop(data->mlx_ptr);
 }

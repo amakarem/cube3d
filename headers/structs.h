@@ -6,9 +6,12 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 13:47:13 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 15:55:07 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 19:31:03 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 # include <fcntl.h>
 # include <math.h>
@@ -113,3 +116,5 @@ typedef struct s_player
     float       planeY;
     float       plane_length;
 }				t_player;
+
+#endif

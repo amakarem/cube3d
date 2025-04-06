@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 14:34:41 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 19:42:47 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 800
+# define WIDTH 1400
 # define HEIGHT 800
-# define M_3_PI_2 4.7123889804
 # define FOV 60
 # define BLOCK_SIZE 64
+
 # define ESC 53
 # define CTRL 256
-
 # define W 13
 # define S 1
 # define A 0
 # define D 2
-
 # define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-
-# define P 35
-# define M 46
 // SPEED [3.0f pixels / frame]
 # define SPEED 3.0f
 // ROTATION_SPEED [0.07f radiants / pixels difference]
@@ -74,6 +69,7 @@ typedef struct s_data
 	t_mouse		mouse;
 }				t_data;
 
+// shared
 int				ft_destroy(t_data *data);
 
 // validation
@@ -100,9 +96,6 @@ void			ft_err_message_exit(char *s1, char *s2);
 // keyboard handling
 int				ft_keydown(int key, void *param);
 int				ft_keyup(int key, void *param);
-int				ft_mousemove(int x, int y, void *param);
-int				ft_mouse_up(int button, int x, int y, void *param);
-int				ft_mouse_down(int button, int x, int y, void *param);
 
 // utils
 char			*ft_trim_newlines(char *line);
@@ -131,7 +124,6 @@ void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
 t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir, t_player player);
 void ft_move_player(t_data *data, t_player *p);
 void    ft_get_dda(t_dda *dda, float *rayDir, t_player player);
-void    ft_rotate(t_player *p, float angle);
 void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *rayDir);
 
 #endif

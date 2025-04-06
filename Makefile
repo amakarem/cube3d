@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/06 19:18:01 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/06 19:36:17 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,9 @@ else
 	MINILIBX = $(MINILIBXDIR)/libmlx.a
 endif
 
-# ADD here folder names with (PARSING, CLEARING, UTILS, ...), that hold appropriate files for a clean project structure
 CLEARING = cleaners.c
 INITIALIZATION = heap_allocations.c init_player.c
-KEYBOARD = controllers.c wnd_resize.c
+KEYBOARD = controllers.c
 MESSAGING = errors.c
 PARSING = parser.c get_textures.c get_colors.c
 RAYCASTING = raycast.c draw_slices.c draw_utils.c buffer.c move_player.c
