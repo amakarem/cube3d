@@ -6,9 +6,17 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 13:47:13 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 14:04:45 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/06 15:55:07 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+# include <fcntl.h>
+# include <math.h>
+# include <stdbool.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_validation
 {

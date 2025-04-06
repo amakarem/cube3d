@@ -6,13 +6,14 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/06 14:31:59 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/06 19:18:01 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = cub3D
+BONUS_NAME = cub3D_bonus
 
 SRCSDIR = srcs/
 OBJSDIR = objs/
@@ -44,29 +45,35 @@ PARSING = parser.c get_textures.c get_colors.c
 RAYCASTING = raycast.c draw_slices.c draw_utils.c buffer.c move_player.c
 UTILS = utils_staff.c
 VALIDATION = validations.c check_textures.c check_colors.c check_map.c utils.c utils2.c utils3.c
+MINIMAP = minimap.c
 
-# ADD the Files to SRCS and add a prefix for a clean structure
-SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
+SHARED_DIR = shared/
+SHARED_SRCS = $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
 				$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION)) \
 				$(addprefix validation/, $(VALIDATION)) $(addprefix raycasting/, $(RAYCASTING))
 
-BONUS_SRCS = main.c $(addprefix parsing/, $(PARSING)) $(addprefix utils/, $(UTILS)) $(addprefix clearing/, $(CLEARING)) \
-						$(addprefix messaging/, $(MESSAGING)) $(addprefix keyboard/, $(KEYBOARD)) $(addprefix initialization/, $(INITIALIZATION)) \
-						$(addprefix validation/, $(VALIDATION)) $(addprefix raycasting/, $(RAYCASTING))
+MANDATORY_DIR = mandatory/
+MANDATORY_SRCS = main.c
 
-SRCS_PATHS = $(addprefix $(SRCSDIR), $(SRCS))
-BONUS_PATHS = $(addprefix $(SRCSDIR), $(BONUS_SRCS))
+BONUS_DIR = bonus/
+BONUS_SRCS = main.c $(addprefix minimap/, $(MINIMAP))
 
-OBJS = $(SRCS_PATHS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
-OBJS_BONUS = $(BONUS_PATHS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
+SRCS_MANDATORY = $(addprefix $(SRCSDIR)$(MANDATORY_DIR), $(MANDATORY_SRCS)) \
+					$(addprefix $(SRCSDIR)$(SHARED_DIR), $(SHARED_SRCS)) \
+
+SRCS_BONUS = $(addprefix $(SRCSDIR)$(BONUS_DIR), $(BONUS_SRCS)) \
+				$(addprefix $(SRCSDIR)$(SHARED_DIR), $(SHARED_SRCS))
+
+OBJS_MANDATORY = $(SRCS_MANDATORY:$(SRCSDIR)%= $(OBJSDIR)%)
+OBJS_BONUS = $(SRCS_BONUS:$(SRCSDIR)%= $(OBJSDIR)%)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(MINILIBX) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
+$(NAME): $(OBJS_MANDATORY) $(MINILIBX) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS_MANDATORY) $(INCLUDES) $(LIBS) -o $(NAME)
 
 bonus: $(OBJS_BONUS) $(MINILIBX) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) $(INCLUDES) $(LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(INCLUDES) $(LIBS) -o $(BONUS_NAME)
 
 # compilation of libmlx.a inside mlx directory
 ifeq ($(UNAME), Linux)
@@ -90,7 +97,7 @@ clean:
 	make -C $(MINILIBXDIR) clean
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(BONUS_NAME)
 	make -C $(LIBFTDIR) fclean
 
 re: fclean all
