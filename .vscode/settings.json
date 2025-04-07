@@ -1,12 +1,13 @@
 {
     "files.associations": {
-        "array": "c",
-        "string": "c",
-        "string_view": "c",
-        "cub3d.h": "c",
-        "limits": "c",
-        "vector": "c",
-        "fcntl.h": "c",
-        "math.h": "c"
-    }
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"cub3d.h": "c",
+		"limits": "c",
+		"vector": "c",
+		"fcntl.h": "c",
+		"math.h": "c",
+		"iterator": "c"
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 15:38:08 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 15:07:29 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 char	ft_get_player(char **map, float *px, float *py)
 {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (map[y])
 	{
 		x = 0;
-		while (map[x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
@@ -51,7 +51,8 @@ void	ft_init_player(t_player *p, char **map)
 {
 	char	orientation;
 
-	ft_get_player(map, &p->posX, &p->posY);
+	orientation = ft_get_player(map, &p->posX, &p->posY);
+	// printf("in init player x = %f, y = %f, map[y][x] = %c\n", p->posX, p->posY, map[(int)p->posY][(int)p->posX]);
 	if (orientation == 'N')
     {
         p->dirX = 0;

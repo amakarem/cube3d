@@ -1,19 +1,27 @@
-NO ./a.xpm
-SO ./a.xpm
-F 220,100,0
+NO ./textures/wall08.png
+SO ./textures/wall08.png
+F 71,168,61
 
 
-WE ./a.xpm
-EA ./a.xpm
+WE ./textures/wall08.png
+EA ./textures/wall08.png
 
 
 
 
-C 225,30,0
+C 149,205,245
 
-
-111111
-100101
-101001
-1100N1
-111111
+11111
+11011
+10001
+10011
+10001
+11001
+10001
+10011
+10001
+11001
+10001
+10N01
+10001
+11111

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:32:23 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 21:05:45 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 15:25:53 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void    ft_translate(char **map, t_player *p, t_keyboard k)
     int x_stra;
     int y_stra;
 
-    x_move = p->dirX * SPEED;
-    y_move = p->dirY * SPEED;
-    x_stra = -p->dirY * SPEED;
-    y_stra = p->dirX * SPEED;
+    x_move = 1.0f * p->dirX * SPEED;
+    y_move = 1.0f * p->dirY * SPEED;
+    x_stra = -1.0f * p->dirY * SPEED;
+    y_stra = 1.0f * p->dirX * SPEED;
     if (k.w_down)
         ft_action(map, p, p->posX + x_move, p->posY + y_move);
 	if (k.s_down)

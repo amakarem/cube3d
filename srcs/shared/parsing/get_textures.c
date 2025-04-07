@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:09:09 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 13:42:04 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 14:21:58 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	*ft_file_to_image(void *mlx, char *file, int *w, int *h)
 {
-	void	*img;
 	char	*extension;
 
 	extension = file + (ft_strlen(file) - 4);

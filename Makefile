@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/06 19:36:17 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/07 12:34:40 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,12 +63,17 @@ SRCS_MANDATORY = $(addprefix $(SRCSDIR)$(MANDATORY_DIR), $(MANDATORY_SRCS)) \
 SRCS_BONUS = $(addprefix $(SRCSDIR)$(BONUS_DIR), $(BONUS_SRCS)) \
 				$(addprefix $(SRCSDIR)$(SHARED_DIR), $(SHARED_SRCS))
 
-OBJS_MANDATORY = $(SRCS_MANDATORY:$(SRCSDIR)%= $(OBJSDIR)%)
-OBJS_BONUS = $(SRCS_BONUS:$(SRCSDIR)%= $(OBJSDIR)%)
+OBJS_MANDATORY = $(SRCS_MANDATORY:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
+OBJS_BONUS = $(SRCS_BONUS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
 
-all: $(NAME)
+all: test  $(NAME)
+	echo "all wird ausgefuehrt"
 
+test:
+	echo $(OBJS_MANDATORY)
+	
 $(NAME): $(OBJS_MANDATORY) $(MINILIBX) $(LIBFT)
+	echo $(SRCS_MANDATORY)
 	$(CC) $(CFLAGS) $(OBJS_MANDATORY) $(INCLUDES) $(LIBS) -o $(NAME)
 
 bonus: $(OBJS_BONUS) $(MINILIBX) $(LIBFT)

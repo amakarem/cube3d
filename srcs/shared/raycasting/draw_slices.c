@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 15:16:44 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 15:20:16 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ t_rayhit   ft_raytrace(t_data *data, t_player player, float *rayDir)
     t_dda       dda;
 
     ft_get_dda(&dda, rayDir, player);
+	// printf("raztrace test\n");
+	// printf("mapX, mapY = %i, %i\n", dda.mapX, dda.mapY);
+	// printf("raztrace dda.sideDistX, dda.sideDistY, dda.deltaDistX, dda.deltaDistY = %f, %f, %f, %f\n", dda.sideDistX, dda.sideDistY, dda.deltaDistX, dda.deltaDistY);
     while (data->map[dda.mapY][dda.mapX] != '1')
     {
         if (dda.sideDistX < dda.sideDistY)
@@ -45,6 +48,7 @@ t_rayhit   ft_raytrace(t_data *data, t_player player, float *rayDir)
             side = 1;
         }
     }
+	// printf("raztrace test2\n");
     return (ft_rayhit(dda, side, rayDir, player));
 }
 
@@ -57,18 +61,22 @@ t_rayhit   ft_raytrace(t_data *data, t_player player, float *rayDir)
 //
 // If the wall was hit on a horizontal side (NS_EW == 1), the color is darkened
 // to simulate lighting on the different wall sides.
-void    ft_get_tex_cols(t_slice s, float *rayDir, t_rayhit rayhit, uint32_t *tex_cols)
+void    ft_get_tex_cols(t_slice s, t_rayhit rayhit, uint32_t tex_cols[])
 {
     uint32_t    color;
 
+	(void)rayhit;
     while (s.y_start < s.y_end)
     {
         s.tex_y = (int)s.tex_pos & (s.tex->height - 1);
         s.tex_pos += s.tex_step;
+		// printf("s.tex_step, s.tex_y, s.tex_pos = %f, %i, %f\n", s.tex_step, s.tex_y, s.tex_pos);
         color = s.tex->data[s.tex->linelen * s.tex_y + s.tex_x];
-        if (rayhit.NS_EW == 1)
-            color = (color >> 1) & 8355711;
+		// printf("nnnnnnnnn\n");
+        // if (rayhit.NS_EW == 1)
+        //     color = (color >> 1) & 8355711;
         tex_cols[s.y_start] = color;
+		s.y_start++;
     }
 }
 
@@ -83,22 +91,38 @@ void    ft_get_tex_cols(t_slice s, float *rayDir, t_rayhit rayhit, uint32_t *tex
 // So distant walls appear shorter.
 //
 // Texture colors are precomputed for every vertical pixel of the slice.
-void    ft_draw_slice(t_data *data, t_img **img, float **rayDir, int x)
+void    ft_draw_slice(t_data *data, t_img **img, float rayDir[][2], int x)
 {
-    size_t      y;
+    int			y;
     t_slice     slice;
     t_rayhit    rayhit;
     uint32_t    tex_cols[data->wnd_h];
+	uint32_t	color;
 
     rayhit = ft_raytrace(data, data->player, rayDir[x]);
     rayhit.wall_h = data->wnd_h / rayhit.distance;
+	// printf("after traceing: rayhit.distance = %f, rayhit.wall_h = %i\n", rayhit.distance, rayhit.wall_h);
     ft_init_slice(data, &slice, rayhit, rayDir[x]);
-    ft_get_tex_cols(slice, rayDir, rayhit, tex_cols);
+	// printf("after init slice: %i, %i, %p\n", slice.y_start, slice.y_end, slice.tex);
+    ft_get_tex_cols(slice, rayhit, tex_cols);
+	// printf("after getting tex colors\n");
     y = 0;
     while (y < slice.y_start)
-        ft_putpxl(img, x, y++, data->ceiling_color);
+	{
+		ft_putpxl(img, x, y++, data->ceiling_color);
+	}
     while (y < slice.y_end)
-        ft_putpxl(img, x, y++, tex_cols[y]);
+	{
+		// printf("slice pixel\n");
+		(void)tex_cols;
+		color = 0x9e9e9b;
+		if (rayhit.NS_EW == 0)
+            color = (color >> 1) & 8355711;
+		ft_putpxl(img, x, y, color);
+		// ft_putpxl(img, x, y, tex_cols[y]);
+		y++;
+	}
     while (y < data->wnd_h)
         ft_putpxl(img, x, y++, data->floor_color);
+	ft_putpxl(img, 10, 10, 0xFF);
 }

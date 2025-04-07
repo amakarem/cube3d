@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:42:46 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 15:33:05 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 14:20:52 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ float   ft_absf(float val)
 
 // Raycasting Tutorial on: https://lodev.org/cgtutor/raycasting.html
 // Sets the current grid cell (mapX/Y) based on the player's position.
-// Calculates delta distances: how far the ray has to travel to cross the next x/y gridline.
-// Calculates initial side distances from the player's position to the first x/y gridline.
+// 
+// delta distances: how far the ray has to travel to cross the next x/y gridline.
+// side distances: from the player's position to the first x/y gridline.
+// 
 // Sets stepX and stepY depending on ray direction.
 void    ft_get_dda(t_dda *dda, float *rayDir, t_player player)
 {
     dda->mapX = (int)player.posX;
     dda->mapY = (int)player.posY;
     dda->deltaDistX = ft_absf(1 / rayDir[0]) * (rayDir[0] != 0) + 1e30 * (rayDir[0] == 0);
-    dda->deltaDistX = ft_absf(1 / rayDir[1]) * (rayDir[1] != 0) + 1e30 * (rayDir[1] == 0);
+    dda->deltaDistY = ft_absf(1 / rayDir[1]) * (rayDir[1] != 0) + 1e30 * (rayDir[1] == 0);
     if (rayDir[0] < 0)
     {
         dda->stepX = -1;
@@ -104,4 +106,5 @@ void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *rayD
         slice->tex_x = slice->tex->width - slice->tex_x - 1;
     slice->tex_step = 1.0f * slice->tex->height / rayhit.wall_h;
     slice->tex_pos = slice->tex_step * (slice->y_start - data->wnd_h / 2 + rayhit.wall_h / 2);
+	// printf("slice->tex_x, slice->tex->width, slice->tex_step = %i, %i, %f\n", slice->tex_x, slice->tex->width, slice->tex_step);
 }

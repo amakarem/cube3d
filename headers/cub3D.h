@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 19:42:47 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 15:26:38 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1400
-# define HEIGHT 800
+# define WIDTH 700
+# define HEIGHT 700
 # define FOV 60
 # define BLOCK_SIZE 64
 
@@ -40,7 +40,7 @@
 # define LEFT 123
 # define RIGHT 124
 // SPEED [3.0f pixels / frame]
-# define SPEED 3.0f
+# define SPEED 0.00000001f
 // ROTATION_SPEED [0.07f radiants / pixels difference]
 # define ROTATION_SPEED 0.006f
 
@@ -71,6 +71,7 @@ typedef struct s_data
 
 // shared
 int				ft_destroy(t_data *data);
+void            ft_rotate(t_player *p, float angle);
 
 // validation
 int				ft_validate_cub_file(char *file);
@@ -87,7 +88,7 @@ int				ft_initialization(t_data **data, char *file);
 // parsing
 int				ft_parse(t_data *data, char *file);
 int				ft_get_textures(t_data *data, char **split);
-int				ft_get_colors(t_data **data, char **split);
+int				ft_get_colors(t_data *data, char **split);
 
 // messaging
 void			ft_err_message(char *s1, char *s2);
@@ -118,7 +119,7 @@ void			ft_cleardata(t_data **data);
 // raycasting
 int				ft_raycast(t_data *data);
 void    ft_clean_window(t_data *data);
-void    ft_draw_slice(t_data *data, t_img **img, float **rayDir, int x);
+void    ft_draw_slice(t_data *data, t_img **img, float rayDir[][2], int x);
 float   ft_absf(float val);
 void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
 t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir, t_player player);

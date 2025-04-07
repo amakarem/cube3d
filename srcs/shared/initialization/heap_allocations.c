@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 13:41:43 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 15:07:59 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,20 @@ int    ft_init_image(t_data **data)
 // the cleardata function
 // just frees all available heap allocations and it
 // doesn't occur a bad access error.
-void	ft_init_null(t_data *data)
+void	ft_init_null(t_data **data)
 {
-	data->mlx_ptr = NULL;
-	data->mlx_win = NULL;
-	data->buffer = NULL;
-	data->map = NULL;
-	data->wnd_h = 0;
-	data->wnd_w = 0;
-	data->floor_color = 0;
-	data->ceiling_color = 0;
-	data->tex[NORTH].img = NULL;
-    data->tex[SOUTH].img = NULL;
-    data->tex[EAST].img = NULL;
-    data->tex[WEST].img = NULL;
+	(*data)->mlx_ptr = NULL;
+	(*data)->mlx_win = NULL;
+	(*data)->buffer = NULL;
+	(*data)->map = NULL;
+	(*data)->wnd_h = 0;
+	(*data)->wnd_w = 0;
+	(*data)->floor_color = 0;
+	(*data)->ceiling_color = 0;
+	(*data)->tex[NORTH].img = NULL;
+    (*data)->tex[SOUTH].img = NULL;
+    (*data)->tex[EAST].img = NULL;
+    (*data)->tex[WEST].img = NULL;
 }
 
 int	ft_create_map(t_data **data, char *file)

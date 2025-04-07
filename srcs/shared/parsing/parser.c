@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 13:03:50 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 14:21:50 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ static int	ft_get_data(t_data *data, int fd)
 
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = ft_trim_newlines(get_next_line(fd));
 		if (!line)
 			break ;
+		if (!*line)
+			continue ;
 		split = ft_split(line, ' ');
 		if (!split)
 			return (ft_free_ptr(&split), 0);
