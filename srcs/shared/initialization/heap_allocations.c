@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 15:07:59 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 19:44:11 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int    ft_init_window(t_data **data)
         return (0);
     (*data)->wnd_w = w;
     (*data)->wnd_h = h;
+	(*data)->center_h = h / 2;
     return (1);     
 }
 

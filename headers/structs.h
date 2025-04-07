@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 13:47:13 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 18:57:18 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 20:12:13 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_keyboard
 	bool		d_down;
 	bool		left_down;
 	bool		right_down;
+	bool		up_pressed;
+	bool		down_pressed;
 }				t_keyboard;
 
 typedef struct s_dda
@@ -114,6 +116,7 @@ typedef struct s_player
 	float		posY;
     float       dirX;
     float       dirY;
+	int			pitch;
     float       planeX;
     float       planeY;
     float       plane_length;

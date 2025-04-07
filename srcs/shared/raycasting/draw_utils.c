@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:42:46 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 17:59:52 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 20:16:51 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir, t_player player)
 // tex_pos is the starting y-position in the texture.
 void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *rayDir)
 {
-    slice->y_start = (data->wnd_h - rayhit.wall_h) / 2;
-    slice->y_end = (data->wnd_h + rayhit.wall_h) / 2;
+    slice->y_start = data->center_h - (rayhit.wall_h / 2) + data->player.pitch;
+    slice->y_end = data->center_h + (rayhit.wall_h / 2) + data->player.pitch;
     slice->tex = &data->tex[rayhit.side];
     if (slice->y_start < 0)
         slice->y_start = 0;
@@ -105,6 +105,5 @@ void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *rayD
     if ((rayhit.NS_EW == 0 && rayDir[0] > 0) || (rayhit.NS_EW == 1 && rayDir[1] < 0))
         slice->tex_x = slice->tex->width - slice->tex_x - 1;
     slice->tex_step = 1.0f * slice->tex->height / rayhit.wall_h;
-    slice->tex_pos = slice->tex_step * (slice->y_start - data->wnd_h / 2 + rayhit.wall_h / 2);
-	// printf("slice->tex_x, slice->tex->width, slice->tex_step = %i, %i, %f\n", slice->tex_x, slice->tex->width, slice->tex_step);
+    slice->tex_pos = slice->tex_step * (slice->y_start - data->center_h + rayhit.wall_h / 2 - data->player.pitch);
 }

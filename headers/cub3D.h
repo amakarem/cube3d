@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 19:28:26 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 19:43:44 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_data
 	t_img		*buffer;
 	int			wnd_w;
 	int			wnd_h;
+	int			center_h;
 	char		**map;
 	int			map_height;
 	uint32_t	floor_color;

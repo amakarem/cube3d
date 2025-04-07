@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 19:32:16 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 19:54:39 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ int	ft_keyup(int key, void *param)
 		data->keyboard.left_down = false;
 	else if (key == RIGHT)
 		data->keyboard.right_down = false;
+	else if (key == UP)
+		data->keyboard.up_pressed = false;
+	else if (key == DOWN)
+		data->keyboard.down_pressed = false;
 	return (0);
 }
 
@@ -89,5 +93,9 @@ int	ft_keydown(int key, void *param)
 		(*data)->keyboard.left_down = true;
 	else if (key == RIGHT)
 		(*data)->keyboard.right_down = true;
+	else if (key == UP)
+		(*data)->keyboard.up_pressed = true;
+	else if (key == DOWN)
+		(*data)->keyboard.down_pressed = true;
 	return (0);
 }

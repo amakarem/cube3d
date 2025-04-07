@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 18:57:40 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 20:12:32 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_init_player(t_player *p, char **map)
         p->dirX = -1;
         p->dirY = 0;
     }
+	p->pitch = 0;
     ft_get_plane_vector(&p->planeX, &p->planeY, p);
 }
 
@@ -83,4 +84,6 @@ void	ft_init_keyboard(t_data **data)
 	(*data)->keyboard.d_down = false;
 	(*data)->keyboard.left_down = false;
 	(*data)->keyboard.right_down = false;
+	(*data)->keyboard.up_pressed = false;
+	(*data)->keyboard.down_pressed = false;
 }
