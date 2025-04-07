@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 15:07:29 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 18:57:40 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_init_player(t_player *p, char **map)
 	char	orientation;
 
 	orientation = ft_get_player(map, &p->posX, &p->posY);
-	// printf("in init player x = %f, y = %f, map[y][x] = %c\n", p->posX, p->posY, map[(int)p->posY][(int)p->posX]);
 	if (orientation == 'N')
     {
         p->dirX = 0;
@@ -82,4 +81,6 @@ void	ft_init_keyboard(t_data **data)
 	(*data)->keyboard.a_down = false;
 	(*data)->keyboard.s_down = false;
 	(*data)->keyboard.d_down = false;
+	(*data)->keyboard.left_down = false;
+	(*data)->keyboard.right_down = false;
 }

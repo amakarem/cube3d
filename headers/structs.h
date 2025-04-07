@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 13:47:13 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 19:31:03 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 18:57:18 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_keyboard
 	bool		a_down;
 	bool		s_down;
 	bool		d_down;
+	bool		left_down;
+	bool		right_down;
 }				t_keyboard;
 
 typedef struct s_dda

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 20:59:16 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 19:32:16 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,6 @@ int	ft_mousemove(int x, int y, void *param)
 	return (0);
 }
 
-void    ft_orientate(t_player *p, int key)
-{
-	if (key == LEFT)
-    {
-        p->dirX = -1;
-        p->dirY = 0;
-    }
-	else if (key == RIGHT)
-    {
-        p->dirX = 1;
-        p->dirY = 0;
-    }
-    else if (key == UP)
-    {
-        p->dirX = 0;
-        p->dirY = -1;
-    }
-	else if (key == DOWN)
-    {
-        p->dirX = 0;
-        p->dirY = 1;
-    }
-    p->planeX = -p->dirY * p->plane_length;
-    p->planeY = p->dirX * p->plane_length;
-}
-
 int	ft_keyup(int key, void *param)
 {
 	t_data	*data;
@@ -91,7 +65,10 @@ int	ft_keyup(int key, void *param)
 		data->keyboard.s_down = false;
 	else if (key == D)
 		data->keyboard.d_down = false;
-    ft_orientate(&data->player, key);
+	else if (key == LEFT)
+		data->keyboard.left_down = false;
+	else if (key == RIGHT)
+		data->keyboard.right_down = false;
 	return (0);
 }
 
@@ -108,5 +85,9 @@ int	ft_keydown(int key, void *param)
 		(*data)->keyboard.s_down = true;
 	else if (key == D)
 		(*data)->keyboard.d_down = true;
+	else if (key == LEFT)
+		(*data)->keyboard.left_down = true;
+	else if (key == RIGHT)
+		(*data)->keyboard.right_down = true;
 	return (0);
 }

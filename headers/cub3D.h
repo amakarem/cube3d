@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 15:26:38 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/07 19:28:26 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@
 # define LEFT 123
 # define RIGHT 124
 // SPEED [3.0f pixels / frame]
-# define SPEED 0.00000001f
+# define SPEED 0.1f
 // ROTATION_SPEED [0.07f radiants / pixels difference]
 # define ROTATION_SPEED 0.006f
+# define WALL_DISTANCE 0.2f
 
 typedef enum    s_tex_names
 {

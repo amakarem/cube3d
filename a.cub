@@ -3,8 +3,8 @@ SO ./textures/wall08.png
 F 71,168,61
 
 
-WE ./textures/wall08.png
-EA ./textures/wall08.png
+WE ./textures/wall01.png
+EA ./textures/wall01.png
 
 
 
