@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 20:07:19 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 19:47:55 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 21:07:06 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_closed_horizontal(char **map, int y, int x)
 	right = false;
 	while (_x--)
 	{
+		if (map[y][x] == ' ')
+			return (0);
 		if (map[y][_x] == '1')
 		{
 			left = true;
@@ -31,6 +33,8 @@ int	ft_closed_horizontal(char **map, int y, int x)
 	}
 	while (map[y][x])
 	{
+		if (map[y][x] == ' ')
+			return (0);
 		if (map[y][x] == '1')
 		{
 			right = true;
@@ -44,30 +48,34 @@ int	ft_closed_horizontal(char **map, int y, int x)
 int	ft_closed_vertical(char **map, int y, int x)
 {
 	int		_y;
-	bool	top;
-	bool	bottom;
+	int		top;
+	int		bottom;
 
 	_y = y;
-	top = false;
-	bottom = false;
+	top = -1;
+	bottom = -1;
 	while (_y--)
 	{
-		if (map[_y][x] == '1' && ft_closed_vertical(map, _y, x))
+		if (map[y][x] == ' ')
+			return (0);
+		if (map[_y][x] == '1')
 		{
-			top = true;
+			top++;
 			break ;
 		}
 	}
 	while (map[y])
 	{
-		if (map[y][x] == '1' && ft_closed_vertical(map, y, x))
+		if (map[y][x] == ' ')
+			return (0);
+		if (map[y][x] == '1')
 		{
-			bottom = true;
+			bottom++;
 			break ;
 		}
 		y++;
 	}
-	return (top && bottom);
+	return (top >= 0 && bottom >= 0);
 }
 
 // checks whether the current is blocked by a '1' vertically and horizontally

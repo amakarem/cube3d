@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 19:52:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 20:29:03 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 20:49:31 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@ void	ft_update_check_tex_and_cols(t_validation *checks)
 	{
 		checks->tex_and_cols = true;
 	}
-}
-
-void	ft_init_checks(t_validation *checks)
-{
-	checks->north_tex = false;
-	checks->south_tex = false;
-	checks->east_tex = false;
-	checks->west_tex = false;
-	checks->floor = false;
-	checks->ceiling = false;
-	checks->map_started = false;
-	checks->tex_and_cols = false;
-	checks->validated = false;
 }
 
 bool	ft_is_line_of_map(char *line)
@@ -104,61 +91,26 @@ int	ft_get_map_width(char *file)
 	return (close(fd), count);
 }
 
-char	*ft_get_map_line(int fd)
-{
-	char	*line;
-
-	line = NULL;
-	while (1)
-	{
-		line = ft_trim_newlines(get_next_line(fd));
-		if (!line || ft_is_line_of_map(line))
-			return (line);
-		ft_free(&line);
-	}
-	return (NULL);
-}
-
-int	ft_fill_lines(char ***map, int width, int height, int fd)
-{
-	int		x;
-	int		y;
-	char	*line;
-
-	y = 0;
-	line = ft_get_map_line(fd);
-	printf("a\n");
-	while (y < height)
-	{
-		x = 0;
-		(*map)[y] = malloc(sizeof(char) * (width + 1));
-		if (!*map[y])
-			return (ft_free(&line), 0);
-		while (x < width)
-		{
-			if (x < (int)ft_strlen(line))
-				(*map)[y][x] = line[x];
-			else
-				(*map)[y][x] = ' ';
-			x++;
-		}
-		y++;
-		ft_free(&line);
-		line = ft_trim_newlines(get_next_line(fd));
-	}
-	printf("b\n");
-	return (ft_free(&line), 1);
-}
-
 char	**ft_get_map(char *file, int fd)
 {
+	int		i;
 	int		height;
+	int		width;
 	char	**map;
 
 	height = ft_get_map_height(file);
+	width = ft_get_map_width(file);
 	map = malloc(sizeof(char *) * (height + 1));
 	if (!map)
 		return (NULL);
-	ft_fill_lines(&map, ft_get_map_width(file), height, fd);
+	i = 0;
+	while (i < height)
+	{
+		map[i] = malloc(sizeof(char) * (width + 1));
+		if (!map[i])
+			return (ft_free_ptr(&map), NULL);
+		i++;
+	}
+	ft_fill_lines(&map, width, height, fd);
 	return (map[height] = NULL, map);
 }

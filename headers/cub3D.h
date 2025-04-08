@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:10:42 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:27:15 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,18 @@ int				ft_check_textures(t_validation *checks, char **split);
 int				ft_check_colors(t_validation *checks, char **split);
 int				ft_check_map(char *file, int fd);
 bool			ft_is_line_of_map(char *line);
+int				ft_fill_lines(char ***map, int width, int height, int fd);
+char			*ft_get_map_line(int fd);
+void			ft_init_checks(t_validation *checks);
+bool	ft_check_bottom(char **map, int y, int x);
+bool	ft_check_top(char **map, int y, int x);
+int	ft_outside_horizontal(char **map, int y, int x);
+bool	ft_check_right(char **map, int y, int x);
+bool	ft_check_left(char **map, int y, int x);
+int	ft_is_outside_map(char **map, int y, int x);
+int	ft_outside_vertical(char **map, int y, int x);
+int	ft_outside_horizontal(char **map, int y, int x);
+
 
 // initialization
 void			ft_init_keyboard(t_data **data);
