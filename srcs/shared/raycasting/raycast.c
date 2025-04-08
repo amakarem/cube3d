@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:51:40 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:12:55 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:20:34 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_raycast(t_data *data)
 {
 	int		x;
 	float	camerax;
-	float	raydir[data->wnd_w][2];
+	float	raydir[WIDTH][2];
 
 	x = 0;
 	while (x < data->wnd_w)
