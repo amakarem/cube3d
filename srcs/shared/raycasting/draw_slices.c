@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 20:22:05 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 15:25:14 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void    ft_draw_slice(t_data *data, t_img **img, float rayDir[][2], int x)
     ft_init_slice(data, &slice, rayhit, rayDir[x]);
     ft_get_tex_cols(slice, rayhit, tex_cols);
     y = 0;
-    while (y < slice.y_start - data->player.pitch)
+    while (y < slice.y_start)
 	{
 		ft_putpxl(img, x, y++, data->ceiling_color);
 	}
@@ -111,6 +111,6 @@ void    ft_draw_slice(t_data *data, t_img **img, float rayDir[][2], int x)
 		ft_putpxl(img, x, y, tex_cols[y]);
 		y++;
 	}
-    while (y < data->wnd_h + data->player.pitch)
+    while (y < data->wnd_h)
         ft_putpxl(img, x, y++, data->floor_color);
 }
