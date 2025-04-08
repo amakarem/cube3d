@@ -6,16 +6,16 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 17:57:28 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:10:42 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "structs.h"
 # include "libft.h"
 # include "mlx.h"
+# include "structs.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
@@ -45,13 +45,13 @@
 # define ROTATION_SPEED 0.006f
 # define WALL_DISTANCE 0.2f
 
-typedef enum    s_tex_names
+typedef enum s_tex_names
 {
-    NORTH,
-    SOUTH,
-    EAST,
-    WEST
-}   t_tex_names;
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}				t_tex_names;
 
 typedef struct s_data
 {
@@ -65,7 +65,7 @@ typedef struct s_data
 	int			map_height;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-    t_texture   tex[4];
+	t_texture	tex[4];
 	t_player	player;
 	t_keyboard	keyboard;
 	t_mouse		mouse;
@@ -73,7 +73,7 @@ typedef struct s_data
 
 // shared
 int				ft_destroy(t_data *data);
-void            ft_rotate(t_player *p, float angle);
+void			ft_rotate(t_player *p, float angle);
 
 // validation
 int				ft_validate_cub_file(char *file);
@@ -120,13 +120,15 @@ void			ft_cleardata(t_data **data);
 
 // raycasting
 int				ft_raycast(t_data *data);
-void    ft_clean_window(t_data *data);
-void    ft_draw_slice(t_data *data, t_img **img, float raydir[][2], int x);
-float   ft_absf(float val);
-void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
-t_rayhit    ft_rayhit(t_dda dda, int side, float *raydir, t_player player);
-void ft_move_player(t_data *data, t_player *p);
-void    ft_get_dda(t_dda *dda, float *raydir, t_player player);
-void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *raydir);
+void			ft_clean_window(t_data *data);
+void			ft_draw_slice(t_data *data, t_img **img, float raydir[][2],
+					int x);
+float			ft_absf(float val);
+void			ft_putpxl(t_img **img, int x, int y, uint32_t color);
+t_rayhit		ft_rayhit(t_dda dda, int side, float *raydir, t_player player);
+void			ft_move_player(t_data *data, t_player *p);
+void			ft_get_dda(t_dda *dda, float *raydir, t_player player);
+void			ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit,
+					float *raydir);
 
 #endif

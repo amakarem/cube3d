@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:02:46 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:15:22 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@
 //
 // sideDist: distance from players position to next x/y grid line in raydir.
 // deltaDist: distance the ray travels to go from one x/y-side to the next.
-// mapX/Y: current grid cell being checked for wall hit.
+// mapx/Y: current grid cell being checked for wall hit.
 //
 // Returns information about the perpendicular wall distance, wall side
-// (N, S, E, W), that was hit and wallX (0 - 1) coordinate of the hit.
-// wallX: x/y position on the wall where the ray hit (for texture alignment).
+// (N, S, E, W), that was hit and wallx (0 - 1) coordinate of the hit.
+// wallx: x/y position on the wall where the ray hit (for texture alignment).
 t_rayhit	ft_raytrace(t_data *data, t_player player, float *raydir)
 {
 	int		side;
 	t_dda	dda;
 
 	ft_get_dda(&dda, raydir, player);
-	while (data->map[dda.mapY][dda.mapX] != '1')
+	while (data->map[dda.mapy][dda.mapx] != '1')
 	{
-		if (dda.sideDistX < dda.sideDistY)
+		if (dda.sidedistx < dda.sidedisty)
 		{
-			dda.sideDistX += dda.deltaDistX;
-			dda.mapX += dda.stepX;
+			dda.sidedistx += dda.deltadistx;
+			dda.mapx += dda.stepx;
 			side = 0;
 		}
 		else
 		{
-			dda.sideDistY += dda.deltaDistY;
-			dda.mapY += dda.stepY;
+			dda.sidedisty += dda.deltadisty;
+			dda.mapy += dda.stepy;
 			side = 1;
 		}
 	}
@@ -55,7 +55,7 @@ t_rayhit	ft_raytrace(t_data *data, t_player player, float *raydir)
 // tex_step determines how much to move in the texture per screen pixel.
 // tex_x stays constant per slice, tex_y changes with each y-pixel.
 //
-// If the wall was hit on a horizontal side (NS_EW == 1), the color is darkened
+// If the wall was hit on a horizontal side (ns_ew == 1), the color is darkened
 // to simulate lighting on the different wall sides.
 void	ft_get_tex_cols(t_slice s, t_rayhit rayhit, uint32_t tex_cols[])
 {
@@ -71,7 +71,7 @@ void	ft_get_tex_cols(t_slice s, t_rayhit rayhit, uint32_t tex_cols[])
 		s.tex_y = (int)s.tex_pos & (s.tex->height - 1);
 		s.tex_pos += s.tex_step;
 		color = pixels[s.tex_y * tex_line_length + s.tex_x];
-		if (rayhit.NS_EW == 1)
+		if (rayhit.ns_ew == 1)
 			color = (color >> 1) & 8355711;
 		tex_cols[s.y_start] = color;
 		s.y_start++;

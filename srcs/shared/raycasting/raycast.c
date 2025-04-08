@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:51:40 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 17:58:47 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:12:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	ft_raycast(t_data *data)
 	while (x < data->wnd_w)
 	{
 		camerax = (2.0f * x / (float)data->wnd_w) - 1.0f;
-		raydir[x][0] = data->player.dirX + data->player.planeX * camerax;
-		raydir[x][1] = data->player.dirY + data->player.planeY * camerax;
+		raydir[x][0] = data->player.dirx + data->player.planex * camerax;
+		raydir[x][1] = data->player.diry + data->player.planey * camerax;
 		ft_draw_slice(data, &data->buffer, raydir, x);
 		x++;
 	}

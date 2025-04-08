@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:32:23 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:00:42 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:12:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	ft_rotate(t_player *p, float angle)
 	float	tmp_x;
 	float	tmp_planex;
 
-	tmp_x = p->dirX;
-	tmp_planex = p->planeX;
-	p->dirX = p->dirX * cos(angle) - p->dirY * sin(angle);
-	p->dirY = tmp_x * sin(angle) + p->dirY * cos(angle);
-	p->planeX = p->planeX * cos(angle) - p->planeY * sin(angle);
-	p->planeY = tmp_planex * sin(angle) + p->planeY * cos(angle);
+	tmp_x = p->dirx;
+	tmp_planex = p->planex;
+	p->dirx = p->dirx * cos(angle) - p->diry * sin(angle);
+	p->diry = tmp_x * sin(angle) + p->diry * cos(angle);
+	p->planex = p->planex * cos(angle) - p->planey * sin(angle);
+	p->planey = tmp_planex * sin(angle) + p->planey * cos(angle);
 }
 
 // checking for wall colissions x/y
@@ -50,10 +50,10 @@ void	ft_translate(t_data *data, char **map, t_player *p, t_keyboard k)
 	float	x_stra;
 	float	y_stra;
 
-	x_move = 1.0f * p->dirX * SPEED;
-	y_move = 1.0f * p->dirY * SPEED;
-	x_stra = -1.0f * p->dirY * SPEED;
-	y_stra = 1.0f * p->dirX * SPEED;
+	x_move = 1.0f * p->dirx * SPEED;
+	y_move = 1.0f * p->diry * SPEED;
+	x_stra = -1.0f * p->diry * SPEED;
+	y_stra = 1.0f * p->dirx * SPEED;
 	if (k.w_down)
 		ft_action(map, p, p->posx + x_move, p->posy + y_move);
 	if (k.s_down)

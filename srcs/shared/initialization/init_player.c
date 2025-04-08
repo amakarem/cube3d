@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:04:37 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:12:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ char	ft_get_player(char **map, float *px, float *py)
 	return ('N');
 }
 
-void	ft_get_plane_vector(float *planeX, float *planeY, t_player *p)
+void	ft_get_plane_vector(float *planex, float *planey, t_player *p)
 {
 	float	fov_radiant;
 
 	fov_radiant = FOV * M_PI / 180.0f;
 	p->plane_length = tanf(fov_radiant / 2.0f);
-	*planeX = -p->dirY * p->plane_length;
-	*planeY = p->dirX * p->plane_length;
+	*planex = -p->diry * p->plane_length;
+	*planey = p->dirx * p->plane_length;
 }
 
 void	ft_init_player(t_player *p, char **map)
@@ -54,25 +54,25 @@ void	ft_init_player(t_player *p, char **map)
 	orientation = ft_get_player(map, &p->posx, &p->posy);
 	if (orientation == 'N')
 	{
-		p->dirX = 0;
-		p->dirY = -1;
+		p->dirx = 0;
+		p->diry = -1;
 	}
 	else if (orientation == 'S')
 	{
-		p->dirX = 0;
-		p->dirY = 1;
+		p->dirx = 0;
+		p->diry = 1;
 	}
 	else if (orientation == 'E')
 	{
-		p->dirX = 1;
-		p->dirY = 0;
+		p->dirx = 1;
+		p->diry = 0;
 	}
 	else if (orientation == 'W')
 	{
-		p->dirX = -1;
-		p->dirY = 0;
+		p->dirx = -1;
+		p->diry = 0;
 	}
-	ft_get_plane_vector(&p->planeX, &p->planeY, p);
+	ft_get_plane_vector(&p->planex, &p->planey, p);
 }
 
 void	ft_init_keyboard(t_data **data)

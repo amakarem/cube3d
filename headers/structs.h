@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 13:47:13 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:00:42 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:15:22 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_img
 	int			linelen;
 	int			bpp;
 	int			endian;
-    int         width;
-    int         height;
+	int			width;
+	int			height;
 }				t_img;
 
 typedef struct s_texture
@@ -66,23 +66,23 @@ typedef struct s_texture
 
 typedef struct s_slice
 {
-    int         y_start;
-    int         y_end;
-    int         tex_x;
-    int         tex_y;
-    float       tex_step;
-    float       tex_pos;
-    t_texture   *tex;
-} t_slice;
+	int			y_start;
+	int			y_end;
+	int			tex_x;
+	int			tex_y;
+	float		tex_step;
+	float		tex_pos;
+	t_texture	*tex;
+}				t_slice;
 
 typedef struct s_rayhit
 {
-    int	    	side;
-    int         wall_h;
-    int         NS_EW;
-    float       wallX;
-    float		distance;
-    t_texture   *tex;
+	int			side;
+	int			wall_h;
+	int			ns_ew;
+	float		wallx;
+	float		distance;
+	t_texture	*tex;
 }				t_rayhit;
 
 typedef struct s_keyboard
@@ -99,26 +99,26 @@ typedef struct s_keyboard
 
 typedef struct s_dda
 {
-    int     mapX;
-    int     mapY;
-    int     stepX;
-    int     stepY;
-    float   sideDistX;
-    float   sideDistY;
-    float   deltaDistX;
-    float   deltaDistY;
-    float   perpWallDist;
-}           t_dda;
+	int			mapx;
+	int			mapy;
+	int			stepx;
+	int			stepy;
+	float		sidedistx;
+	float		sidedisty;
+	float		deltadistx;
+	float		deltadisty;
+	float		perpwalldist;
+}				t_dda;
 
 typedef struct s_player
 {
 	float		posx;
 	float		posy;
-    float       dirX;
-    float       dirY;
-    float       planeX;
-    float       planeY;
-    float       plane_length;
+	float		dirx;
+	float		diry;
+	float		planex;
+	float		planey;
+	float		plane_length;
 }				t_player;
 
 #endif
