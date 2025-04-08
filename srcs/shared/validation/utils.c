@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_validating.c                                 :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 20:07:19 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/02 13:00:03 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 19:47:55 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int	ft_closed_vertical(char **map, int y, int x)
 	bottom = false;
 	while (_y--)
 	{
-		if (map[_y][x] == '1')
+		if (map[_y][x] == '1' && ft_closed_vertical(map, _y, x))
 		{
 			top = true;
 			break ;
 		}
 	}
-	while (map[y][x])
+	while (map[y])
 	{
-		if (map[y][x] == '1')
+		if (map[y][x] == '1' && ft_closed_vertical(map, y, x))
 		{
 			bottom = true;
 			break ;
