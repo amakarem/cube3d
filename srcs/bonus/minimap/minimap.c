@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:21:03 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 19:46:54 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 18:07:41 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
-void    ft_minimap(void)
+void	ft_minimap(void)
 {
-    
+	return ;
 }

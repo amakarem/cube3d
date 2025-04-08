@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controllers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 19:54:39 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 18:07:39 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ int	ft_mouse_up(int key, int x, int y, void *param)
 
 int	ft_mousemove(int x, int y, void *param)
 {
-    float   delta_x;
+	float	delta_x;
 	t_data	*data;
 
 	data = (t_data *)param;
-    delta_x = x - data->mouse.mouse_x;
-    if (delta_x != 0)
-        ft_rotate(&data->player, delta_x * ROTATION_SPEED);  
-    data->mouse.mouse_x = x;
-    data->mouse.mouse_y = y;
+	delta_x = x - data->mouse.mouse_x;
+	if (delta_x != 0)
+		ft_rotate(&data->player, delta_x * ROTATION_SPEED);
+	data->mouse.mouse_x = x;
+	data->mouse.mouse_y = y;
 	return (0);
 }
 

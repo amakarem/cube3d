@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   heap_allocations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 19:44:11 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 17:53:53 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int    ft_init_window(t_data **data)
+int	ft_init_window(t_data **data)
 {
-    int		h;
+	int		h;
 	int		w;
-    void	*mlx;
+	void	*mlx;
 
-    mlx = (*data)->mlx_ptr;
+	mlx = (*data)->mlx_ptr;
 	h = (*data)->wnd_h * ((*data)->wnd_h > 0) + HEIGHT * ((*data)->wnd_h == 0);
 	w = (*data)->wnd_w * ((*data)->wnd_w > 0) + WIDTH * ((*data)->wnd_w == 0);
-    (*data)->mlx_win = mlx_new_window(mlx, w, h, "cub3D");
-    if (!(*data)->mlx_win)
-        return (0);
-    (*data)->wnd_w = w;
-    (*data)->wnd_h = h;
+	(*data)->mlx_win = mlx_new_window(mlx, w, h, "cub3D");
+	if (!(*data)->mlx_win)
+		return (0);
+	(*data)->wnd_w = w;
+	(*data)->wnd_h = h;
 	(*data)->center_h = h / 2;
-    return (1);     
+	return (1);
 }
 
-int    ft_init_image(t_data **data)
+int	ft_init_image(t_data **data)
 {
-    int     w;
-    int		h;
-    void	*mlx;
-    t_img	*img;
+	int		w;
+	int		h;
+	void	*mlx;
+	t_img	*img;
 
-    mlx = (*data)->mlx_ptr;
-    w = (*data)->wnd_w;
-    h = (*data)->wnd_h;
-    (*data)->buffer = malloc(sizeof(t_img));
+	mlx = (*data)->mlx_ptr;
+	w = (*data)->wnd_w;
+	h = (*data)->wnd_h;
+	(*data)->buffer = malloc(sizeof(t_img));
 	if (!(*data)->buffer)
 		return (0);
 	img = (*data)->buffer;
@@ -51,9 +51,9 @@ int    ft_init_image(t_data **data)
 			&img->endian);
 	if (!img->data)
 		return (0);
-    img->width = w;
-    img->height = h;
-    return (1);     
+	img->width = w;
+	img->height = h;
+	return (1);
 }
 
 // sets everything to NULL -> in case something can not allocate,
@@ -71,9 +71,9 @@ void	ft_init_null(t_data **data)
 	(*data)->floor_color = 0;
 	(*data)->ceiling_color = 0;
 	(*data)->tex[NORTH].img = NULL;
-    (*data)->tex[SOUTH].img = NULL;
-    (*data)->tex[EAST].img = NULL;
-    (*data)->tex[WEST].img = NULL;
+	(*data)->tex[SOUTH].img = NULL;
+	(*data)->tex[EAST].img = NULL;
+	(*data)->tex[WEST].img = NULL;
 }
 
 int	ft_create_map(t_data **data, char *file)

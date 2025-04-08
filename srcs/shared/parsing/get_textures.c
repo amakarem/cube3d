@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:09:09 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 18:39:48 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 18:04:03 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	*ft_file_to_image(void *mlx, char *file, int *w, int *h)
 		return (mlx_xpm_file_to_image(mlx, file, w, h));
 	else if (!ft_strncmp(extension, ".png", 4))
 		return (mlx_png_file_to_image(mlx, file, w, h));
-    return (NULL);
+	return (NULL);
 }
 
 static int	ft_get_tex(t_texture *tex, void *mlx, char *file)
@@ -34,8 +34,8 @@ static int	ft_get_tex(t_texture *tex, void *mlx, char *file)
 	tex->img = ft_file_to_image(mlx, file, w, h);
 	if (!tex->img)
 		return (0);
-	tex->data = mlx_get_data_addr(tex->img, &tex->bpp,
-			&tex->linelen, &tex->endian);
+	tex->data = mlx_get_data_addr(tex->img, &tex->bpp, &tex->linelen,
+			&tex->endian);
 	if (!tex->data)
 		return (0);
 	return (1);
@@ -44,12 +44,12 @@ static int	ft_get_tex(t_texture *tex, void *mlx, char *file)
 int	ft_get_textures(t_data *data, char **split)
 {
 	if (!ft_strncmp(split[0], "NO", ft_strlen(split[0])))
-        return (ft_get_tex(&data->tex[NORTH], data->mlx_ptr, split[1]));
+		return (ft_get_tex(&data->tex[NORTH], data->mlx_ptr, split[1]));
 	else if (!ft_strncmp(split[0], "SO", ft_strlen(split[0])))
-	    return (ft_get_tex(&data->tex[SOUTH], data->mlx_ptr, split[1]));
+		return (ft_get_tex(&data->tex[SOUTH], data->mlx_ptr, split[1]));
 	else if (!ft_strncmp(split[0], "EA", ft_strlen(split[0])))
-	    return (ft_get_tex(&data->tex[EAST], data->mlx_ptr, split[1]));
+		return (ft_get_tex(&data->tex[EAST], data->mlx_ptr, split[1]));
 	else if (!ft_strncmp(split[0], "WE", ft_strlen(split[0])))
-	    return (ft_get_tex(&data->tex[WEST], data->mlx_ptr, split[1]));
+		return (ft_get_tex(&data->tex[WEST], data->mlx_ptr, split[1]));
 	return (1);
 }

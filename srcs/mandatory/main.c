@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 17:22:44 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 18:07:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int ft_destroy(t_data *data)
+int	ft_destroy(t_data *data)
 {
-    ft_cleardata(&data);
-    exit(0);
+	ft_cleardata(&data);
+	exit(0);
 }
 
-int ft_game_loop(t_data *data)
+int	ft_game_loop(t_data *data)
 {
-    ft_move_player(data, &data->player);
-    ft_raycast(data);
-    return (0);
+	ft_move_player(data, &data->player);
+	ft_raycast(data);
+	return (0);
 }
 
 void	ft_mlx_hooks(t_data *data)
@@ -48,7 +48,6 @@ int	main(int argc, char **argv)
 		ft_cleardata(&data);
 		ft_err_message_exit("Initialization failed!", NULL);
 	}
-	// ft_raycast(data);
 	ft_mlx_hooks(data);
 	return (ft_cleardata(&data), 0);
 }

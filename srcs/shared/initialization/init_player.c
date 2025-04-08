@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:34:52 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 15:30:19 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 18:04:37 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,42 +37,42 @@ char	ft_get_player(char **map, float *px, float *py)
 	return ('N');
 }
 
-void ft_get_plane_vector(float *planeX, float *planeY, t_player *p)
+void	ft_get_plane_vector(float *planeX, float *planeY, t_player *p)
 {
-    float   fov_radiant;
+	float	fov_radiant;
 
-    fov_radiant = FOV * M_PI / 180.0f;
-    p->plane_length = tanf(fov_radiant / 2.0f);
-    *planeX = -p->dirY * p->plane_length;
-    *planeY = p->dirX * p->plane_length;
+	fov_radiant = FOV * M_PI / 180.0f;
+	p->plane_length = tanf(fov_radiant / 2.0f);
+	*planeX = -p->dirY * p->plane_length;
+	*planeY = p->dirX * p->plane_length;
 }
 
 void	ft_init_player(t_player *p, char **map)
 {
 	char	orientation;
 
-	orientation = ft_get_player(map, &p->posX, &p->posY);
+	orientation = ft_get_player(map, &p->posx, &p->posy);
 	if (orientation == 'N')
-    {
-        p->dirX = 0;
-        p->dirY = -1;
-    }
+	{
+		p->dirX = 0;
+		p->dirY = -1;
+	}
 	else if (orientation == 'S')
-    {
-        p->dirX = 0;
-        p->dirY = 1;
-    }
+	{
+		p->dirX = 0;
+		p->dirY = 1;
+	}
 	else if (orientation == 'E')
-    {
-        p->dirX = 1;
-        p->dirY = 0;
-    }
+	{
+		p->dirX = 1;
+		p->dirY = 0;
+	}
 	else if (orientation == 'W')
-    {
-        p->dirX = -1;
-        p->dirY = 0;
-    }
-    ft_get_plane_vector(&p->planeX, &p->planeY, p);
+	{
+		p->dirX = -1;
+		p->dirY = 0;
+	}
+	ft_get_plane_vector(&p->planeX, &p->planeY, p);
 }
 
 void	ft_init_keyboard(t_data **data)

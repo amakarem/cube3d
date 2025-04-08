@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:21:08 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 19:37:14 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 18:06:18 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
-int ft_destroy(t_data *data)
+int	ft_destroy(t_data *data)
 {
-    ft_cleardata(&data);
-    exit(0);
+	ft_cleardata(&data);
+	exit(0);
 }
 
-int ft_game_loop(t_data *data)
+int	ft_game_loop(t_data *data)
 {
-    ft_clean_window(data);
-    ft_move_player(data, &data->player);
-    if (!ft_raycast(data))
-    {
-        ft_cleardata(&data);
-        ft_err_message_exit("Raycasting failed!", NULL);
-    }
-    return (0);
+	ft_clean_window(data);
+	ft_move_player(data, &data->player);
+	if (!ft_raycast(data))
+	{
+		ft_cleardata(&data);
+		ft_err_message_exit("Raycasting failed!", NULL);
+	}
+	return (0);
 }
 
 void	ft_mlx_hooks(t_data *data)

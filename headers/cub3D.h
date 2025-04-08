@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 19:43:44 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/08 17:57:28 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,12 @@ void			ft_cleardata(t_data **data);
 // raycasting
 int				ft_raycast(t_data *data);
 void    ft_clean_window(t_data *data);
-void    ft_draw_slice(t_data *data, t_img **img, float rayDir[][2], int x);
+void    ft_draw_slice(t_data *data, t_img **img, float raydir[][2], int x);
 float   ft_absf(float val);
 void    ft_putpxl(t_img **img, int x, int y, uint32_t color);
-t_rayhit    ft_rayhit(t_dda dda, int side, float *rayDir, t_player player);
+t_rayhit    ft_rayhit(t_dda dda, int side, float *raydir, t_player player);
 void ft_move_player(t_data *data, t_player *p);
-void    ft_get_dda(t_dda *dda, float *rayDir, t_player player);
-void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *rayDir);
+void    ft_get_dda(t_dda *dda, float *raydir, t_player player);
+void    ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit, float *raydir);
 
 #endif
