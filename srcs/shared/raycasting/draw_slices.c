@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_slices.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:23:33 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:11:54 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_draw_slice(t_data *data, t_img **img, float raydir[][2], int x)
 	int			y;
 	t_slice		slice;
 	t_rayhit	rayhit;
-	uint32_t	tex_cols[HEIGHT];
+	uint32_t	tex_cols[3000];
 
 	rayhit = ft_raytrace(data, data->player, raydir[x]);
 	rayhit.wall_h = data->wnd_h / rayhit.distance;

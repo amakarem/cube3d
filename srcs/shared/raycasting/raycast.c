@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:51:40 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:20:34 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:13:33 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@
 // Slices are rendered to the image buffer and put to the screen afterwards.
 int	ft_raycast(t_data *data)
 {
-	int		x;
-	float	camerax;
-	float	raydir[WIDTH][2];
+	int			x;
+	float		camerax;
+	float		raydir[5500][2];
+	t_rayhit	*rayhit[5500];
 
 	x = 0;
 	while (x < data->wnd_w)
