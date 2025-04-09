@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controllers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:07:39 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:49:22 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,26 @@ int	ft_mouse_up(int key, int x, int y, void *param)
 	return (0);
 }
 
-int	ft_mousemove(int x, int y, void *param)
+int	ft_mousemove(int x, int y, t_data *data)
 {
-	float	delta_x;
-	t_data	*data;
+	float		delta_x;
+	float		delta_y;
+	static int	old_x = -1;
+	static int	old_y = -1;
 
-	data = (t_data *)param;
-	delta_x = x - data->mouse.mouse_x;
-	if (delta_x != 0)
-		ft_rotate(&data->player, delta_x * ROTATION_SPEED);
-	data->mouse.mouse_x = x;
-	data->mouse.mouse_y = y;
-	return (0);
+	old_x = x * (old_x == -1) + old_x * (old_x != -1);
+	old_y = y * (old_y == -1) + old_y * (old_y != -1);
+	delta_x = x - old_x;
+	delta_y = old_y - y;
+	if (x >= 0 && x <= data->wnd_w && y >= 0 && y <= data->wnd_h
+		&& !data->mouse.mouse_down)
+	{
+		if (delta_x != 0)
+			ft_rotate(&data->player, delta_x * ROTATION_SPEED);
+		if (delta_y != 0)
+			data->center_h += delta_y * 2;
+	}
+	return (old_x = x, old_y = y, 0);
 }
 
 int	ft_keyup(int key, void *param)

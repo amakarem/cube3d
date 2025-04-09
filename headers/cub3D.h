@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/09 15:00:10 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:43:23 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 700
-# define HEIGHT 700
+# define WIDTH 1500
+# define HEIGHT 900
 # define FOV 60
 # define BLOCK_SIZE 64
 
