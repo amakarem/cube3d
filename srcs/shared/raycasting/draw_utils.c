@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:42:46 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:15:22 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:58:08 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ void	ft_get_dda(t_dda *dda, float *raydir, t_player player)
 	{
 		dda->stepy = -1;
 		dda->sidedisty = (player.posy - dda->mapy) * dda->deltadisty;
+		return ;
 	}
-	else
-	{
-		dda->stepy = 1;
-		dda->sidedisty = (dda->mapy + 1 - player.posy) * dda->deltadisty;
-	}
+	dda->stepy = 1;
+	dda->sidedisty = (dda->mapy + 1 - player.posy) * dda->deltadisty;
 }
 
 // Raycasting Tutorial on: https://lodev.org/cgtutor/raycasting.html

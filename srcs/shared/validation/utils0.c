@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils0.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 20:07:19 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 21:07:06 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/09 14:54:28 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,22 @@
 
 int	ft_closed_horizontal(char **map, int y, int x)
 {
-	int		_x;
 	bool	left;
 	bool	right;
 
-	_x = x;
-	left = false;
-	right = false;
-	while (_x--)
-	{
-		if (map[y][x] == ' ')
-			return (0);
-		if (map[y][_x] == '1')
-		{
-			left = true;
-			break ;
-		}
-	}
-	while (map[y][x])
-	{
-		if (map[y][x] == ' ')
-			return (0);
-		if (map[y][x] == '1')
-		{
-			right = true;
-			break ;
-		}
-		x++;
-	}
+	left = ft_has_left_wall(map, y, x);
+	right = ft_has_right_wall(map, y, x);
 	return (left && right);
 }
 
 int	ft_closed_vertical(char **map, int y, int x)
 {
-	int		_y;
-	int		top;
-	int		bottom;
+	bool	top;
+	bool	bottom;
 
-	_y = y;
-	top = -1;
-	bottom = -1;
-	while (_y--)
-	{
-		if (map[y][x] == ' ')
-			return (0);
-		if (map[_y][x] == '1')
-		{
-			top++;
-			break ;
-		}
-	}
-	while (map[y])
-	{
-		if (map[y][x] == ' ')
-			return (0);
-		if (map[y][x] == '1')
-		{
-			bottom++;
-			break ;
-		}
-		y++;
-	}
-	return (top >= 0 && bottom >= 0);
+	top = ft_has_top_wall(map, y, x);
+	bottom = ft_has_bottom_wall(map, y, x);
+	return (top && bottom);
 }
 
 // checks whether the current is blocked by a '1' vertically and horizontally

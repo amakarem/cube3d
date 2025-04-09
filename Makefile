@@ -6,7 +6,7 @@
 #    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/08 21:29:34 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/09 14:55:31 by tkeil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ MESSAGING = errors.c
 PARSING = parser.c get_textures.c get_colors.c
 RAYCASTING = raycast.c draw_slices.c draw_utils.c buffer.c move_player.c
 UTILS = utils_staff.c
-VALIDATION = validations.c check_textures.c check_colors.c check_map.c utils.c utils2.c utils3.c utils4.c utils5.c utils6.c
+VALIDATION = validations.c check_textures.c check_colors.c check_map.c utils0.c utils1.c utils2.c utils3.c utils4.c utils5.c utils6.c
 MINIMAP = minimap.c
 
 SHARED_DIR = shared/
