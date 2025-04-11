@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controllers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 17:07:50 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 17:18:56 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_mousemove(int x, int y, t_data *data)
 		if (delta_y != 0 && delta_y > 0 && data->center_h < data->wnd_h)
 			data->center_h += delta_y * 2;
 		else if (delta_y != 0 && delta_y < 0
-			&& data->center_h > -data->wnd_h / 2)
+			&& data->center_h > 0)
 		{
 			data->center_h += delta_y * 2;
 		}

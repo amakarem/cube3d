@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/aelaaser/cube3d/srcs/bonus/minimap",
-      "program": "/Users/aelaaser/cube3d/srcs/bonus/minimap/build/Debug/outDebug"
+      "cwd": "/Users/aelaaser/cube3d/srcs/shared/validation",
+      "program": "/Users/aelaaser/cube3d/srcs/shared/validation/build/Debug/outDebug"
     }
   ]
 }
