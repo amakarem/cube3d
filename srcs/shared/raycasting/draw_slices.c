@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_slices.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 04:01:15 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/09 16:11:54 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 23:56:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ void	ft_get_tex_cols(t_slice s, t_rayhit rayhit, uint32_t tex_cols[])
 	(void)rayhit;
 	tex_line_length = s.tex->linelen / (s.tex->bpp / 8);
 	pixels = (uint32_t *)s.tex->data;
-	while (s.y_start < s.y_end)
+	while (s.y_start < s.y_end && tex_line_length > 0)
 	{
 		s.tex_y = (int)s.tex_pos & (s.tex->height - 1);
 		s.tex_pos += s.tex_step;
+		if (s.tex_y == 0)
+			continue ;
 		color = pixels[s.tex_y * tex_line_length + s.tex_x];
 		if (rayhit.ns_ew == 1)
 			color = (color >> 1) & 8355711;
@@ -107,7 +109,10 @@ void	ft_draw_slice(t_data *data, t_img **img, float raydir[][2], int x)
 	}
 	while (y < slice.y_end)
 	{
-		ft_putpxl(img, x, y, tex_cols[y]);
+		if (tex_cols[y])
+			ft_putpxl(img, x, y, tex_cols[y]);
+		else
+			ft_putpxl(img, x, y, 0x71bfc5);
 		y++;
 	}
 	while (y < data->wnd_h)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaners.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:53:14 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/06 13:41:17 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 23:34:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_clear_buffer(void *mlx, t_img **buffer)
 
 void	ft_clear_texture(void *mlx, t_texture *texture)
 {
+	if (!texture)
+		return ;
 	if (texture->img)
 		mlx_destroy_image(mlx, texture->img);
 }
@@ -38,7 +40,7 @@ void	ft_clear_window(void *mlx, void **win)
 
 void	ft_cleardata(t_data **data)
 {
-	if (!data || !*data)
+	if (!data)
 		return ;
 	ft_free_ptr(&(*data)->map);
 	ft_clear_texture((*data)->mlx_ptr, &(*data)->tex[NORTH]);

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:09:09 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:04:03 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/11 23:56:40 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	*ft_file_to_image(void *mlx, char *file, int *w, int *h)
 {
 	char	*extension;
 
+	if (ft_strlen(file) < 4)
+		return (NULL);
 	extension = file + (ft_strlen(file) - 4);
 	if (!ft_strncmp(extension, ".xpm", 4))
 		return (mlx_xpm_file_to_image(mlx, file, w, h));
@@ -37,7 +39,10 @@ static int	ft_get_tex(t_texture *tex, void *mlx, char *file)
 	tex->data = mlx_get_data_addr(tex->img, &tex->bpp, &tex->linelen,
 			&tex->endian);
 	if (!tex->data)
+	{
+		mlx_destroy_image(mlx, tex->img);
 		return (0);
+	}
 	return (1);
 }
 
