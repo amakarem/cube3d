@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:42:46 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 19:12:49 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:15:41 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_get_dda(t_dda *dda, float *raydir, t_player player)
 	dda->deltadisty = 1e30;
 	if (raydir[0] != 0)
 		dda->deltadistx = ft_absf(1 / raydir[0]);
-	if (raydir[1] != 0)	
+	if (raydir[1] != 0)
 		dda->deltadisty = ft_absf(1 / raydir[1]);
 	dda->stepx = 1;
 	if (raydir[0] < 0)
