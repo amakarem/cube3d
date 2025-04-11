@@ -1,11 +1,11 @@
 
-NO ./textures/wall05.png
-SO ./textures/wall06.png
+NO ./textures/wall01.png
+SO ./textures/wall07.png
 F 71,168,61
 
 
-WE ./textures/wall01.png
-EA ./textures/wall01.png
+WE ./textures/wall03.png
+EA ./textures/wall04.png
 
 
 

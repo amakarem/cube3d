@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:42:46 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/09 14:58:08 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 19:12:49 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ void	ft_get_dda(t_dda *dda, float *raydir, t_player player)
 {
 	dda->mapx = (int)player.posx;
 	dda->mapy = (int)player.posy;
-	dda->deltadistx = ft_absf(1 / raydir[0]) * (raydir[0] != 0) + 1e30
-		* (raydir[0] == 0);
-	dda->deltadisty = ft_absf(1 / raydir[1]) * (raydir[1] != 0) + 1e30
-		* (raydir[1] == 0);
+	dda->deltadistx = 1e30;
+	dda->deltadisty = 1e30;
+	if (raydir[0] != 0)
+		dda->deltadistx = ft_absf(1 / raydir[0]);
+	if (raydir[1] != 0)	
+		dda->deltadisty = ft_absf(1 / raydir[1]);
+	dda->stepx = 1;
 	if (raydir[0] < 0)
 	{
 		dda->stepx = -1;
 		dda->sidedistx = (player.posx - dda->mapx) * dda->deltadistx;
 	}
 	else
-	{
-		dda->stepx = 1;
 		dda->sidedistx = (dda->mapx + 1 - player.posx) * dda->deltadistx;
-	}
 	if (raydir[1] < 0)
 	{
 		dda->stepy = -1;
