@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:40:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:03:57 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/11 20:08:23 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	ft_get_col(uint32_t *col, char *rgb, int endian)
 	g = ft_atoi(split[1]) & 0xFF;
 	b = ft_atoi(split[2]) & 0xFF;
 	*col = (r << 16) | (g << 8) | b;
+	ft_free_ptr(&split);
 	return (1);
 }
 

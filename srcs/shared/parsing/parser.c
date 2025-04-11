@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/07 14:21:50 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 20:13:49 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ static int	ft_get_data(t_data *data, int fd)
 		if (!*line)
 			continue ;
 		split = ft_split(line, ' ');
-		if (!split)
-			return (ft_free_ptr(&split), 0);
-		if (!ft_get_textures(data, split) || !ft_get_colors(data, split))
-			break ;
 		ft_free(&line);
+		if (!split)
+			return (0);
+		if (!ft_get_textures(data, split) || !ft_get_colors(data, split))
+		{
+			ft_free_ptr(&split);
+			break ;
+		}
+		ft_free_ptr(&split);
 	}
 	return (1);
 }

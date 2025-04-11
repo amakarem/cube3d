@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:07:55 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/11 20:02:45 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,16 @@ void	ft_mlx_hooks(t_data *data)
 	mlx_loop(data->mlx_ptr);
 }
 
+void	leaks(void)
+{
+	system("leaks cub3D");
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	atexit(&leaks);
 	data = NULL;
 	if (argc != 2 || !*argv[1])
 		ft_err_message_exit("Wrong number of arguments!", NULL);

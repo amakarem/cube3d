@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 16:59:02 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 19:23:37 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,5 @@ void			ft_move_player(t_data *data, t_player *p);
 void			ft_get_dda(t_dda *dda, float *raydir, t_player player);
 void			ft_init_slice(t_data *data, t_slice *slice, t_rayhit rayhit,
 					float *raydir);
-
+void    *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);
 #endif

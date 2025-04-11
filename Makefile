@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+         #
+#    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/09 15:11:05 by tkeil            ###   ########.fr        #
+#    Updated: 2025/04/11 20:10:21 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEADERS_LIBFTDIR = libft/headers/
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 MINILIBXDIR = mlx
-MINILIBXLINUXDIR = linux
+MINILIBXLINUXDIR = mlx-x
 
 UNAME = $(shell uname)
 # MACOS or Linux
