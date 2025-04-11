@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 13:33:39 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/09 15:49:22 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 17:07:50 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ int	ft_mousemove(int x, int y, t_data *data)
 	{
 		if (delta_x != 0)
 			ft_rotate(&data->player, delta_x * ROTATION_SPEED);
-		if (delta_y != 0)
+		if (delta_y != 0 && delta_y > 0 && data->center_h < data->wnd_h)
 			data->center_h += delta_y * 2;
+		else if (delta_y != 0 && delta_y < 0
+			&& data->center_h > -data->wnd_h / 2)
+		{
+			data->center_h += delta_y * 2;
+		}
 	}
 	return (old_x = x, old_y = y, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:32:23 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/09 15:20:09 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 16:56:13 by tkeil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_translate(t_data *data, char **map, t_player *p, t_keyboard k)
 		ft_rotate(p, ROTATION_SPEED * 8.0f);
 	if (k.up_pressed && data->center_h < data->wnd_h)
 		data->center_h += 20;
-	if (k.down_pressed && data->center_h > -data->wnd_h)
+	if (k.down_pressed && data->center_h > -data->wnd_h / 2)
 		data->center_h -= 20;
 }
 
