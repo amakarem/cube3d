@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 16:25:26 by tkeil             #+#    #+#              #
-#    Updated: 2025/04/11 23:39:42 by aelaaser         ###   ########.fr        #
+#    Updated: 2025/04/12 00:32:24 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ OBJS_MANDATORY = $(SRCS_MANDATORY:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
 
 all: test  $(NAME)
-	echo "run ./cube3d mapfile.cub"
+	echo "run ./cube3D mapfile.cub"
 
 test:
 	echo $(OBJS_MANDATORY)
