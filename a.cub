@@ -1,17 +1,10 @@
 
-NO ./textures/wall01.png
-SO ./textures/wall07.png
+NO ./textures/wall05.png
+SO ./textures/wall06.png
 F 71,168,61
-
-
-WE ./textures/wall03.png
-EA ./textures/wall04.png
-
-
-
-
+WE ./textures/wall01.png
+EA ./textures/wall01.png
 C 149,205,245
-
 11111
 11011
 100011111111

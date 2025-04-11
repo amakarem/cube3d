@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:32:59 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 17:53:53 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:56:53 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int	ft_create_map(t_data **data, char *file)
 		return (0);
 	(*data)->map = ft_get_map(file, fd);
 	if (!(*data)->map)
-		return (0);
+		return (close(fd), 0);
 	i = 0;
 	while ((*data)->map[i])
 		i++;
 	(*data)->map_height = i;
-	return (1);
+	return (close(fd), 1);
 }
 
 int	ft_initialization(t_data **data, char *file)

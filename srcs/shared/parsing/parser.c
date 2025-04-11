@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 20:13:49 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:02:43 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static int	ft_get_data(t_data *data, int fd)
 		if (!line)
 			break ;
 		if (!*line)
+		{
+			free(line);
 			continue ;
+		}
 		split = ft_split(line, ' ');
 		ft_free(&line);
 		if (!split)

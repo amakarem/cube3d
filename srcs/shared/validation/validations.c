@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:16:28 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/05 17:46:33 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/11 22:10:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ static int	ft_validate_cub_format(char *file, int fd)
 		if (checks.tex_and_cols)
 		{
 			if (!ft_check_map(file, fd))
+			{
+				ft_free(&line);
 				break ;
+			}
 			checks.validated = true;
 		}
 		ft_free(&line);
@@ -68,6 +71,6 @@ int	ft_validate_cub_file(char *file)
 	if (ft_open_file(file, &fd) == -1)
 		return (0);
 	if (!ft_validate_cub_format(file, fd))
-		return (ft_err_message("Error\n", "Invalid .cub file format"), 0);
-	return (ft_err_message(".cub file was validated successfully!", NULL), 1);
+		return (ft_err_message("Error\n", "Invalid .cub file format"), close(fd), 0);
+	return (ft_err_message(".cub file was validated successfully!", NULL), close(fd), 1);
 }
