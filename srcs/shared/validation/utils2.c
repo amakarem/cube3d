@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 19:52:02 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 21:53:37 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:27:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_get_map_height(char *file)
 	bool	map_start;
 
 	if (ft_open_file(file, &fd) == -1)
-		return (ft_err_message("Could not open .cub file.", NULL), 0);
+		return (ft_err_msg("Could not open .cub file.", NULL), 0);
 	count = 0;
 	map_start = false;
 	while (1)
@@ -74,7 +74,7 @@ int	ft_get_map_width(char *file)
 	bool	map_start;
 
 	if (ft_open_file(file, &fd) == -1)
-		return (ft_err_message("Could not open .cub file.", NULL), 0);
+		return (ft_err_msg("Could not open .cub file.", NULL), 0);
 	count = 0;
 	map_start = false;
 	while (1)

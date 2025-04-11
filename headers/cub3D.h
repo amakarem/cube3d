@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:50:31 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 19:23:37 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:27:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ int				ft_get_textures(t_data *data, char **split);
 int				ft_get_colors(t_data *data, char **split);
 
 // messaging
-void			ft_err_message(char *s1, char *s2);
-void			ft_err_message_exit(char *s1, char *s2);
+void			ft_err_msg(char *s1, char *s2);
+void			ft_err_msg_exit(char *s1, char *s2);
 
 // keyboard handling
 int				ft_keydown(int key, void *param);

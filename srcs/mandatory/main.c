@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:48:57 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 20:02:45 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:27:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	main(int argc, char **argv)
 	atexit(&leaks);
 	data = NULL;
 	if (argc != 2 || !*argv[1])
-		ft_err_message_exit("Wrong number of arguments!", NULL);
+		ft_err_msg_exit("Wrong number of arguments!", NULL);
 	if (!ft_validate_cub_file(argv[1]))
-		ft_err_message_exit("Error\n", ".cub file validation failed!");
+		ft_err_msg_exit("Error\n", ".cub file validation failed!");
 	if (!ft_initialization(&data, argv[1]) || !ft_parse(data, argv[1]))
 	{
 		ft_cleardata(&data);
-		ft_err_message_exit("Initialization failed!", NULL);
+		ft_err_msg_exit("Initialization failed!", NULL);
 	}
 	ft_mlx_hooks(data);
 	return (ft_cleardata(&data), 0);

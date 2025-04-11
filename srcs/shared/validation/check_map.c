@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:24:21 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 21:26:52 by tkeil            ###   ########.fr       */
+/*   Updated: 2025/04/12 00:27:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,19 +104,19 @@ int	ft_check_map(char *file, int fd)
 	if (!ft_valid_map_characters(map))
 	{
 		ft_free_ptr(&map);
-		return (ft_err_message("Error\n",
+		return (ft_err_msg("Error\n",
 				"Invalid map character or an empty line."), 0);
 	}
 	if (!ft_is_present_player_and_unique(map))
 	{
 		ft_free_ptr(&map);
-		return (ft_err_message("Error\n",
+		return (ft_err_msg("Error\n",
 				"Either more than 1 player or none in the map."), 0);
 	}
 	if (!ft_is_map_closed(map))
 	{
 		ft_free_ptr(&map);
-		return (ft_err_message("Error\n", "Map is not closed by walls."), 0);
+		return (ft_err_msg("Error\n", "Map is not closed by walls."), 0);
 	}
 	return (ft_free_ptr(&map), 1);
 }

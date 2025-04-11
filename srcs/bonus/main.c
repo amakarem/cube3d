@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:21:08 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/08 18:06:18 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:27:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_game_loop(t_data *data)
 	if (!ft_raycast(data))
 	{
 		ft_cleardata(&data);
-		ft_err_message_exit("Raycasting failed!", NULL);
+		ft_err_msg_exit("Raycasting failed!", NULL);
 	}
 	return (0);
 }
@@ -48,13 +48,13 @@ int	main(int argc, char **argv)
 
 	data = NULL;
 	if (argc != 2 || !*argv[1])
-		ft_err_message_exit("Wrong number of arguments!", NULL);
+		ft_err_msg_exit("Wrong number of arguments!", NULL);
 	if (!ft_validate_cub_file(argv[1]))
-		ft_err_message_exit("Error\n", ".cub file validation failed!");
+		ft_err_msg_exit("Error\n", ".cub file validation failed!");
 	if (!ft_initialization(&data, argv[1]) || !ft_parse(data, argv[1]))
 	{
 		ft_cleardata(&data);
-		ft_err_message_exit("Initialization failed!", NULL);
+		ft_err_msg_exit("Initialization failed!", NULL);
 	}
 	ft_mlx_hooks(data);
 	return (ft_cleardata(&data), 0);
