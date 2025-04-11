@@ -216,7 +216,8 @@ int	mipng_data(mlx_img_list_t *img, unsigned char *dat, png_info_t *pi)
       return (ERR_DATA_MISMATCH);
     }
   if ((ret = mipng_fill_img(img, buffer, pi)))
-    return (ret);
+    return (free(buffer), ret);
+  free(buffer);
   return (0);
 }
 
