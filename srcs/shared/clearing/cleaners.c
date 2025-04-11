@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:53:14 by tkeil             #+#    #+#             */
-/*   Updated: 2025/04/11 23:34:02 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:19:23 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	ft_clear_texture(void *mlx, t_texture *texture)
 	if (!texture)
 		return ;
 	if (texture->img)
+	{
 		mlx_destroy_image(mlx, texture->img);
+		texture->img = NULL;
+	}
 }
 
 void	ft_clear_window(void *mlx, void **win)
