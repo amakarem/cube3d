@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 13:08:03 by tkeil             #+#    #+#             */
-/*   Updated: 2024/10/08 13:08:03 by tkeil            ###   ########.fr       */
+/*   Created: 2024/10/13 16:05:39 by aelaaser          #+#    #+#             */
+/*   Updated: 2024/12/05 18:14:51 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*s;
-	size_t	len1;
-	size_t	len2;
+	char	*ptr;
+	int		i;
+	int		j;
 
-	if (!s1 && !s2)
-		return (ft_strdup(""));
-	len1 = 0;
-	len2 = 0;
-	if (s1)
-		len1 = ft_strlen(s1);
-	if (s2)
-		len2 = ft_strlen(s2);
-	s = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!s)
+	if (!s2)
 		return (NULL);
-	if (s1)
-		ft_strlcpy(s, s1, len1 + 1);
-	else
-		*s = '\0';
-	if (s2)
-		ft_strlcat(s, s2, len1 + len2 + 1);
-	return (s);
+	ptr = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (ptr == NULL)
+		return (NULL);
+	j = 0;
+	i = 0;
+	while (s1 && s1[i] != '\0')
+		ptr[j++] = s1[i++];
+	i = 0;
+	while (s2 && s2[i] != '\0')
+		ptr[j++] = s2[i++];
+	ptr[j] = '\0';
+	return (ptr);
 }

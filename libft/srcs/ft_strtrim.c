@@ -3,53 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 13:11:26 by tkeil             #+#    #+#             */
-/*   Updated: 2024/10/08 13:11:26 by tkeil            ###   ########.fr       */
+/*   Created: 2024/10/13 16:27:42 by aelaaser          #+#    #+#             */
+/*   Updated: 2024/10/14 00:01:24 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_occur(char const *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*ptr;
-	size_t	pre;
-	size_t	post;
+	int		start;
+	int		end;
 
-	if (!s1)
-		return (NULL);
-	if (!set)
-		return (ft_strdup(s1));
-	pre = 0;
-	post = ft_strlen(s1) - 1;
-	while (s1[pre] && ft_occur(set, s1[pre]))
-		pre++;
-	while (post > pre && ft_occur(set, s1[post]))
-		post--;
-	ptr = ft_substr(s1, pre, post - pre + 1);
-	return (ptr);
+	end = ft_strlen(s1) - 1;
+	start = 0;
+	while (s1[start] != '\0' && ft_strchr(set, s1[start]))
+		start++;
+	while (end >= start && ft_strrchr(set, s1[end]))
+		end--;
+	return (ft_substr(s1, start, (end - start + 1)));
 }
-
-//  int main(void)
-//  {
-//      char *s1 = "aaaa";
-//      char *set;
-//     printf("trimmed str: %s\n", ft_strtrim(s1, set));
-//      return (0);
-//  }

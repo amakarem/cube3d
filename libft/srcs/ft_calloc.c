@@ -3,49 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 12:31:59 by tkeil             #+#    #+#             */
-/*   Updated: 2024/10/08 12:31:59 by tkeil            ###   ########.fr       */
+/*   Created: 2024/10/11 23:23:41 by aelaaser          #+#    #+#             */
+/*   Updated: 2024/10/11 23:39:40 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
-	if (!nelem || !elsize)
-	{
-		ptr = malloc(0);
-		if (!ptr)
-			return (NULL);
-		ft_bzero(ptr, 1);
+	ptr = malloc(count * size);
+	if (ptr == NULL)
 		return (ptr);
-	}
-	ptr = malloc(nelem * elsize);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, nelem * elsize);
+	ft_bzero(ptr, (count * size));
 	return (ptr);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-//  	void *str = calloc(0, 0);
-// 	if (calloc(0, 0) == 0)
-// 	{
-// 		printf("real calloc: (null)\n");
-// 	}
-// 	printf("my calloc: %s\n", ft_calloc(0, 0));
-//  	if (str == ((void *)0))
-// 	{
-// 		printf("0\n");
-// 		exit(0);
-// 	}
-//  	free(str);
-// 	printf("1\n");
-//  	exit(1);
-// }

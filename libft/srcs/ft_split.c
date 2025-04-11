@@ -3,104 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 13:57:08 by tkeil             #+#    #+#             */
-/*   Updated: 2024/11/20 17:51:07 by tkeil            ###   ########.fr       */
+/*   Created: 2024/10/14 00:23:16 by aelaaser          #+#    #+#             */
+/*   Updated: 2024/10/16 18:24:01 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_memfree(char **ptr)
+static char	**ft_free_ar(char	**arr)
 {
-	size_t	i;
+	int	i;
 
+	if (arr == NULL)
+		return (NULL);
 	i = 0;
-	while (ptr[i])
+	while (arr[i])
 	{
-		free(ptr[i]);
+		free(arr[i]);
 		i++;
 	}
-	free(ptr);
+	free(arr);
+	return (NULL);
 }
 
-static char	**ft_strsplitter(char **ptr, char const *s, char c)
+static size_t	ft_get_keys(char const *s, char c)
 {
-	char const	*p;
-	size_t		i;
+	size_t	keys;
 
-	i = 0;
+	if (!*s)
+		return (0);
+	keys = 0;
 	while (*s)
 	{
-		if (*s != c && !(*s >= 9 && *s <= 13))
-		{
-			p = s;
-			while (*s && *s != c && !(*s >= 9 && *s <= 13))
-				s++;
-			ptr[i] = ft_substr(p, 0, s - p);
-			if (!ptr[i])
-				return (NULL);
-			i++;
-		}
-		else
+		while (*s == c)
+			s++;
+		if (*s)
+			keys++;
+		while (*s != c && *s)
 			s++;
 	}
-	ptr[i] = NULL;
-	return (ptr);
+	return (keys);
 }
 
-static size_t	ft_count_words(char const *s, char c)
+static char	**ft_set_arr(char const *s, char c)
 {
-	size_t	count;
-	size_t	i;
+	char	**arr;
 
-	count = 0;
-	i = 0;
-	while (s[i])
+	if (!s)
+		return (NULL);
+	arr = (char **)malloc((ft_get_keys(s, c) + 1) * sizeof(char *));
+	if (arr == NULL)
+		return (NULL);
+	return (arr);
+}
+
+static char	**ft_split_write(char const *s, char c, char **arr)
+{
+	int		key;
+	size_t	w_len;
+
+	key = 0;
+	while (*s)
 	{
-		if (s[i] != c && !(s[i] >= 9 && s[i] <= 13))
+		while (*s == c && *s)
+			s++;
+		if (*s)
 		{
-			count++;
-			while (s[i] && s[i] != c)
-				i++;
+			if (!ft_strchr(s, c))
+				w_len = ft_strlen(s);
+			else
+				w_len = ft_strchr(s, c) - s;
+			arr[key] = ft_substr(s, 0, w_len);
+			if (arr[key] == NULL)
+				return (ft_free_ar(arr));
+			key++;
+			s += w_len;
 		}
-		else
-			i++;
 	}
-	return (count);
+	arr[key] = NULL;
+	return (arr);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**ptr;
-	size_t	words;
+	char	**arr;
 
-	if (!s)
+	arr = ft_set_arr(s, c);
+	if (arr == NULL)
 		return (NULL);
-	words = ft_count_words(s, c);
-	ptr = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!ptr)
-		return (NULL);
-	if (!ft_strsplitter(ptr, s, c))
-	{
-		ft_memfree(ptr);
-		return (NULL);
-	}
-	return (ptr);
+	return (ft_split_write(s, c, arr));
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-//     char *str = "halli hallo";
-//     char c = ' ';
-//     char **ptr = ft_split(str, c);
-//     int i = 0;
-//     while (ptr[i] != NULL)
-//     {
-//         printf("%s\n", ptr[i]);
-//         i++;
-//     }
-//     return (0);
-// }

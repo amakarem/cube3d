@@ -3,30 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkeil <tkeil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 13:03:11 by tkeil             #+#    #+#             */
-/*   Updated: 2024/10/08 13:03:11 by tkeil            ###   ########.fr       */
+/*   Created: 2024/10/11 18:34:46 by aelaaser          #+#    #+#             */
+/*   Updated: 2024/10/11 19:25:25 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	char	*srcptr;
+	char	*dstptr;
+	size_t	i;
 
-	if (!src && !dest)
-		return (NULL);
-	d = (unsigned char *) dest;
-	s = (const unsigned char *) src;
-	if (d < s)
-		return (ft_memcpy(dest, src, n));
+	srcptr = (char *) src;
+	dstptr = (char *) dst;
+	if (dst == NULL && src == NULL)
+		return ((void *) dst);
+	if (srcptr < dstptr)
+	{
+		while (len--)
+			dstptr[len] = srcptr[len];
+	}
 	else
 	{
-		while (n--)
-			d[n] = s[n];
+		i = 0;
+		while (i++ < len)
+			dstptr[i - 1] = srcptr[i - 1];
 	}
-	return (dest);
+	return ((void *) dst);
 }
